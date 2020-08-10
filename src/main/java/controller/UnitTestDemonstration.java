@@ -10,4 +10,6 @@ public class UnitTestDemonstration {
     public int getX(){
         return x;
     }
+
+    // some changes
 }
