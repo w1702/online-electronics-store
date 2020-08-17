@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 class UnitTestDemonstrationTest {
     @Test
     public void whenCreatingClassWithX_thenReturnXInGetter(){
-
         // 1 arrange - setup data or input to your function
         int expected = 1;
         // 2 act - calling your function
