@@ -3,6 +3,5 @@ package model;
 import java.util.List;
 
 public class Item {
-    private List<Review> reviews;
-    //testing
+    //private List<Review> reviews;
 }
