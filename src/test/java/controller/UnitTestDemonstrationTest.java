@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 class UnitTestDemonstrationTest {
     @Test
     public void whenCreatingClassWithX_thenReturnXInGetter(){
-        // 1 arrange - setup data or input to your function
-        int expected = 1;
-        // 2 act - calling your function
+        // Arrange - setup data or input to your function
+        int input = 1;
+        // Act - calling your function
         // Create a new instance of the class
-        UnitTestDemonstration unitTestDemonstration = new UnitTestDemonstration(expected);
+        UnitTestDemonstration unitTestDemonstration = new UnitTestDemonstration(input);
         int result = unitTestDemonstration.getX();
-        // assert - checking the output of your function
+        // Assert - checking the output of your function
         // Check if expected value equals function return value
-        Assertions.assertEquals(1, result);
+        Assertions.assertEquals(input, result);
     }
 }
