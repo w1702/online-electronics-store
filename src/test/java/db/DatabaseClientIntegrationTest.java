@@ -12,7 +12,7 @@ class DatabaseClientIntegrationTest {
     public void givenDBCredentials_whenConnectionEstablished_thenVerifyDocumentsAreRetrived(){
         DatabaseClient databaseClient = new DatabaseClient();
         Document appData = databaseClient.getAppData();
-
+        String json = appData.toJson();
 
 
     }
