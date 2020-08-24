@@ -15,5 +15,6 @@ public class OnlineElectronicsStoreApplication extends Application {
     public void start(Stage primaryStage) throws Exception {
         // todo: change fxml file
         UILoader.render(primaryStage, new OnlineElectronicsStore(new DatabaseClient()),File.separator+ "view" + File.separator + "Checkout.fxml", "Title");
+
     }
 }
