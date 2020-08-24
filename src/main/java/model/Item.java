@@ -4,34 +4,32 @@ import java.util.List;
 
 public class Item {
     private List<Review> reviews;
-    private String id, name, image, description;
-    private Double cost;
+    private String id;
+    private String name;
+    private double cost;
+    private String description;
 
-    public Item(){
-
+    public Item(List<Review> reviews, String id, String name, double cost, String description){
+        this.reviews = reviews;
+        this.id = id;
+        this.name = name;
+        this.cost = cost;
+        this.description = description;
     }
 
-    public String getId(){
-        return id;
-    }
-
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public String getImage(){
-        return image;
-    }
-
-    public String getDescription(){
-        return description;
-    }
-
-    public Double getCost(){
+    public double getCost() {
         return cost;
     }
 
-    public List<Review> getReviews(){
+    public String getDescription() {
+        return description;
+    }
+
+    public List<Review> getReviews() {
         return reviews;
     }
 }
