@@ -1,16 +1,16 @@
 package model;
 
-import java.util.List;
+import javafx.collections.ObservableList;
 
 public class ShoppingCart {
-    private List<Item> items;
+    private ObservableList<Item> items;
 
-    public ShoppingCart(List<Item> items){
+    public ShoppingCart(ObservableList<Item> items){
         this.items = items;
 
     }
 
-    public List<Item> getItems() {
+    public ObservableList<Item> getItems() {
         return items;
     }
 }

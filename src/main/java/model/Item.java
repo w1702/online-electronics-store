@@ -16,4 +16,20 @@ public class Item {
         this.cost = cost;
         this.description = description;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
 }

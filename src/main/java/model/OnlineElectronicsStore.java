@@ -3,6 +3,8 @@ package model;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import db.DatabaseClient;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +26,7 @@ public class OnlineElectronicsStore {
                 .get("users").getAsJsonArray();
         // todo: fetch other fields of the user object
         for (JsonElement userJsonElement : usersJsonArray) {
-            ArrayList<Item> cartItems = new ArrayList<>();
+            ObservableList<Item> cartItems = FXCollections.observableArrayList();
             JsonArray cartItemsJsonArray = userJsonElement.getAsJsonObject()
                     .get("shoppingCart").getAsJsonObject()
                     .get("items").getAsJsonArray();
