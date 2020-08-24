@@ -7,5 +7,6 @@ public class OnlineElectronicsStoreApplication extends Application {
     }
 
     public void start(Stage primaryStage) throws Exception {
-    }
+        System.out.print("hello world");
+   }
 }
