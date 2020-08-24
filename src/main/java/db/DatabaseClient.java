@@ -1,5 +1,9 @@
 package db;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
@@ -40,10 +44,10 @@ public class DatabaseClient {
     }
 
     /**
-     * Get the document containing our application data
-     * @return the Document object
+     * Get the app data as a JsonObject
+     * @return the JsonObject
      */
-    public Document getAppData(){
-        return appData;
+    public JsonObject getAppData(){
+        return JsonParser.parseString(appData.toJson()).getAsJsonObject();
     }
 }
