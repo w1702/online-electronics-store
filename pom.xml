@@ -29,7 +29,7 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <!-- double check version -->
+            <!-- double check version  -->
             <version>11</version>
         </dependency>
         <dependency>
