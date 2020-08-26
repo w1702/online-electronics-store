@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+fx:controller="controller.ViewAllItemsController"
+      alignment="center" spacing="10"
+      styleClass="root"
+      prefWidth="800.0"
+>
+    <HBox alignment="center_left">
+    <Label  styleClass="h1" text="View Items"/>
+    </HBox>
+    
+    <stylesheets>
+    </stylesheets>
+</VBox>

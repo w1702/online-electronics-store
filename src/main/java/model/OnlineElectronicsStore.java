@@ -48,4 +48,8 @@ public class OnlineElectronicsStore {
     public List<User> getUsers() {
         return users;
     }
+    
+    public List<Item> getItems() {
+        return items;
+    }
 }
