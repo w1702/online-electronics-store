@@ -14,6 +14,7 @@ public class ShoppingCart {
         return items;
     }
 
+    // todo: write unit test for this
     public double getTotalCost(){
         double totalCost = 0;
         for (Item item : items) {
