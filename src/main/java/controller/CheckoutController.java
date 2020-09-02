@@ -1,21 +1,21 @@
 package controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TableView;
+import javafx.scene.text.Text;
 import model.OnlineElectronicsStore;
 import model.ShoppingCart;
 import utils.MVCController;
 
 public class CheckoutController extends MVCController<OnlineElectronicsStore> {
     @FXML
-    private TableView checkoutTableView;
+    private Text totalCostText;
 
-    public final OnlineElectronicsStore getOnlineElectronicsStore(){
-        return getModel();
+
+    @FXML private void initialize(){
+        totalCostText.setText("Total Cost: " + getModel().getLoggedInUser().getShoppingCart().getTotalCost());
     }
 
     public final ShoppingCart getShoppingCart(){
-        // todo: this gets the first user as of right now, should be getting the currently logged in user
-        return getModel().getUsers().get(0).getShoppingCart();
+        return getModel().getLoggedInUser().getShoppingCart();
     }
 }
