@@ -59,4 +59,8 @@ public class OnlineElectronicsStore {
     public User getLoggedInUser() {
         return loggedInUser;
     }
+
+    public List<Item> getItems() {
+        return items;
+    }
 }
