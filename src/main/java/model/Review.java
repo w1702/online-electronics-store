@@ -7,9 +7,13 @@ public class Review {
     private String id;
     private String date;
     private String comment;
-    private User user;
+    private String userId;
 
-    public Review(){
+    public Review(String id, String date, String comment, String userId){
+        this.id = id;
+        this.date = date;
+        this.comment = comment;
+        this.userId = userId;
     }
 
     public String getId() {
@@ -24,7 +28,7 @@ public class Review {
         return comment;
     }
 
-    public User getUser() {
-        return user;
+    public String getUserId() {
+        return userId;
     }
 }

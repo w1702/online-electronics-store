@@ -12,6 +12,7 @@ class OnlineElectronicsStoreIntegrationTest {
     public void givenDBConnectionSuccess_whenInitialisingApp_thenVerifyAppModelsContainData(){
         DatabaseClient databaseClient = new DatabaseClient();
         OnlineElectronicsStore onlineElectronicsStore = new OnlineElectronicsStore(databaseClient);
+        Assertions.assertNotNull(onlineElectronicsStore.getItems());
         Assertions.assertNotNull(onlineElectronicsStore.getUsers());
     }
 }
