@@ -12,7 +12,7 @@
     <HBox>
         <Label styleClass="h1" text="Checkout"/>
     </HBox>
-    <TableView fx:id="checkoutTableView" items="${controller.shoppingCart.items}" prefHeight="200">
+    <TableView fx:id="checkoutTableView" items="${controller.shoppingCart.uniqueItemsAsList}" prefHeight="200">
         <placeholder>
             <Label text="No results found."/>
         </placeholder>
@@ -25,6 +25,9 @@
             </TableColumn>
             <TableColumn text="Description">
                 <cellValueFactory><PropertyValueFactory property="description"/></cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Quantity">
+                <cellValueFactory><PropertyValueFactory property="quantity"/></cellValueFactory>
             </TableColumn>
         </columns>
     </TableView>
