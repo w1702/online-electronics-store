@@ -1,20 +1,204 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox xmlns:fx="http://javafx.com/fxml"
-fx:controller="controller.ViewAllItemsController"
-      alignment="center" spacing="10"
-      styleClass="root"
-      prefWidth="800.0"
->
-    <HBox alignment="center_left">
-    <Label  styleClass="h1" text="View Items"/>
-    </HBox>
+<VBox alignment="center" prefHeight="563.0" prefWidth="635.0" spacing="10" styleClass="root" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewAllItemsController">
+   <AnchorPane prefHeight="559.0" prefWidth="635.0">
+      <children>
+           <Label layoutX="36.0" layoutY="27.0" prefHeight="38.0" prefWidth="159.0" styleClass="h1" text="Online Electronics Store">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Label>
+           <Button fx:id="searchBtn" layoutX="555.0" layoutY="34.0" onAction="#handleSearchItems" text="Search" />
+         <TextField layoutX="231.0" layoutY="34.0" prefHeight="25.0" prefWidth="308.0" promptText="Type to search for an item...">
+         </TextField>
+         <AnchorPane layoutX="29.0" layoutY="78.0" prefHeight="460.0" prefWidth="578.0" style="-fx-background-color: white;">
+            <children>
+               <Button layoutX="40.0" layoutY="61.0" mnemonicParsing="false" prefHeight="173.0" prefWidth="150.0">
+                  <graphic>
+                     <SplitPane dividerPositions="0.7134502923976608" orientation="VERTICAL" prefHeight="173.0" prefWidth="143.0">
+                       <items>
+                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                              <children>
+                                 <ImageView fx:id="img1" fitHeight="119.0" fitWidth="143.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" />
+                              </children>
+                           </AnchorPane>
+                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                              <children>
+                                 <Label fx:id="lblName1" layoutX="12.0" layoutY="5.0" prefHeight="13.0" prefWidth="114.0" styleClass="h1">
+                                    <font>
+                                       <Font size="13.0" />
+                                    </font>
+                                 </Label>
+                                 <Label fx:id="lblPrice1" layoutX="74.0" layoutY="21.0" prefHeight="19.0" prefWidth="52.0" styleClass="h1">
+                                    <font>
+                                       <Font size="13.0" />
+                                    </font>
+                                 </Label>
+                              </children>
+                           </AnchorPane>
+                       </items>
+                     </SplitPane>
+                  </graphic>
+               </Button>
+               <Button fx:id="btnProduct2" layoutX="212.0" layoutY="61.0" mnemonicParsing="false" prefHeight="173.0" prefWidth="150.0">
+                  <graphic>
+                     <SplitPane fx:id="spProduct2" dividerPositions="0.7134502923976608" orientation="VERTICAL" prefHeight="173.0" prefWidth="143.0">
+                        <items>
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                              <children>
+                                 <ImageView fx:id="img2" fitHeight="119.0" fitWidth="143.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" />
+                              </children>
+                           </AnchorPane>
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                              <children>
+                                 <Label fx:id="lblName2" layoutX="12.0" layoutY="5.0" prefHeight="13.0" prefWidth="114.0" styleClass="h1">
+                                    <font>
+                                       <Font size="13.0" />
+                                    </font>
+                                 </Label>
+                                 <Label fx:id="lblPrice2" layoutX="74.0" layoutY="21.0" prefHeight="19.0" prefWidth="52.0" styleClass="h1">
+                                    <font>
+                                       <Font size="13.0" />
+                                    </font>
+                                 </Label>
+                              </children>
+                           </AnchorPane>
+                        </items>
+                     </SplitPane>
+                  </graphic>
+               </Button>
+               <Button  fx:id="btnProduct3" layoutX="388.0" layoutY="61.0" mnemonicParsing="false" prefHeight="173.0" prefWidth="150.0">
+                  <graphic>
+                     <SplitPane fx:id="spProduct3" dividerPositions="0.7134502923976608" orientation="VERTICAL" prefHeight="173.0" prefWidth="143.0">
+                        <items>
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                              <children>
+                                 <ImageView fx:id="img3" fitHeight="119.0" fitWidth="143.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" />
+                              </children>
+                           </AnchorPane>
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                              <children>
+                                 <Label fx:id="lblName3" layoutX="12.0" layoutY="5.0" prefHeight="13.0" prefWidth="114.0" styleClass="h1">
+                                    <font>
+                                       <Font size="13.0" />
+                                    </font>
+                                 </Label>
+                                 <Label fx:id="lblPrice3" layoutX="74.0" layoutY="21.0" prefHeight="19.0" prefWidth="52.0" styleClass="h1">
+                                    <font>
+                                       <Font size="13.0" />
+                                    </font>
+                                 </Label>
+                              </children>
+                           </AnchorPane>
+                        </items>
+                     </SplitPane>
+                  </graphic>
+               </Button>
+               <Button fx:id="btnProduct4" layoutX="40.0" layoutY="264.0" mnemonicParsing="false" prefHeight="173.0" prefWidth="150.0">
+                  <graphic>
+                     <SplitPane fx:id="spProduct4" dividerPositions="0.7134502923976608" orientation="VERTICAL" prefHeight="173.0" prefWidth="143.0">
+                        <items>
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                              <children>
+                                 <ImageView fx:id="img4" fitHeight="119.0" fitWidth="143.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" />
+                              </children>
+                           </AnchorPane>
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                              <children>
+                                 <Label fx:id="lblName4" layoutX="12.0" layoutY="5.0" prefHeight="13.0" prefWidth="114.0" styleClass="h1">
+                                    <font>
+                                       <Font size="13.0" />
+                                    </font>
+                                 </Label>
+                                 <Label fx:id="lblPrice4" layoutX="74.0" layoutY="21.0" prefHeight="19.0" prefWidth="52.0" styleClass="h1">
+                                    <font>
+                                       <Font size="13.0" />
+                                    </font>
+                                 </Label>
+                              </children>
+                           </AnchorPane>
+                        </items>
+                     </SplitPane>
+                  </graphic>
+               </Button>
+               <Button fx:id="btnProduct5" layoutX="212.0" layoutY="264.0" mnemonicParsing="false" prefHeight="173.0" prefWidth="150.0">
+                  <graphic>
+                     <SplitPane fx:id="spProduct5" dividerPositions="0.7134502923976608" orientation="VERTICAL" prefHeight="173.0" prefWidth="143.0">
+                        <items>
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                              <children>
+                                 <ImageView fx:id="img5" fitHeight="119.0" fitWidth="143.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" />
+                              </children>
+                           </AnchorPane>
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                              <children>
+                                 <Label fx:id="lblName5" layoutX="12.0" layoutY="5.0" prefHeight="13.0" prefWidth="114.0" styleClass="h1">
+                                    <font>
+                                       <Font size="13.0" />
+                                    </font>
+                                 </Label>
+                                 <Label fx:id="lblPrice5" layoutX="74.0" layoutY="21.0" prefHeight="19.0" prefWidth="52.0" styleClass="h1">
+                                    <font>
+                                       <Font size="13.0" />
+                                    </font>
+                                 </Label>
+                              </children>
+                           </AnchorPane>
+                        </items>
+                     </SplitPane>
+                  </graphic>
+               </Button>
+               <Button fx:id="btnProduct6" layoutX="388.0" layoutY="264.0" mnemonicParsing="false" prefHeight="173.0" prefWidth="150.0">
+                  <graphic>
+                     <SplitPane fx:id="spProduct6" dividerPositions="0.7134502923976608" orientation="VERTICAL" prefHeight="173.0" prefWidth="143.0">
+                        <items>
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                              <children>
+                                 <ImageView fx:id="img6" fitHeight="119.0" fitWidth="143.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" />
+                              </children>
+                           </AnchorPane>
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                              <children>
+                                 <Label fx:id="lblName6" layoutX="12.0" layoutY="5.0" prefHeight="13.0" prefWidth="114.0" styleClass="h1">
+                                    <font>
+                                       <Font size="13.0" />
+                                    </font>
+                                 </Label>
+                                 <Label fx:id="lblPrice6" layoutX="74.0" layoutY="21.0" prefHeight="19.0" prefWidth="52.0" styleClass="h1">
+                                    <font>
+                                       <Font size="13.0" />
+                                    </font>
+                                 </Label>
+                              </children>
+                           </AnchorPane>
+                        </items>
+                     </SplitPane>
+                  </graphic>
+               </Button>
+               <Button fx:id="btnPrevious" layoutX="1.0" layoutY="236.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="&lt;" onAction="#loadPreviousPage" />
+               <Button fx:id="btnNext" layoutX="550.0" layoutY="236.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="&gt;" onAction="#loadNextPage" />
+               <ComboBox layoutX="456.0" layoutY="14.0" prefHeight="25.0" prefWidth="94.0" promptText="Sort By">
+               </ComboBox>
+               <Label layoutX="28.0" layoutY="14.0" prefHeight="25.0" prefWidth="36.0" styleClass="h1" text="Sales">
+                  <font>
+                     <Font size="14.0" />
+                  </font>
+               </Label>
+               <Label text="0" visible="false" fx:id="hiddenfield"/>
+            </children>
+         </AnchorPane>
+      </children>
+   </AnchorPane>
     
     <stylesheets>
     </stylesheets>
