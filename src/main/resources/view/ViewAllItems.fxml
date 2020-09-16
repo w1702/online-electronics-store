@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -27,9 +28,9 @@
                   <graphic>
                      <SplitPane dividerPositions="0.7134502923976608" orientation="VERTICAL" prefHeight="173.0" prefWidth="143.0">
                        <items>
-                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: white;">
                               <children>
-                                 <ImageView fx:id="img1" fitHeight="119.0" fitWidth="143.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" />
+                                 <ImageView fx:id="img1" fitHeight="114.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
                               </children>
                            </AnchorPane>
                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -44,6 +45,7 @@
                                        <Font size="13.0" />
                                     </font>
                                  </Label>
+                                 <Label fx:id="hfID1" visible="false" /> 
                               </children>
                            </AnchorPane>
                        </items>
@@ -54,9 +56,9 @@
                   <graphic>
                      <SplitPane fx:id="spProduct2" dividerPositions="0.7134502923976608" orientation="VERTICAL" prefHeight="173.0" prefWidth="143.0">
                         <items>
-                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: white;">
                               <children>
-                                 <ImageView fx:id="img2" fitHeight="119.0" fitWidth="143.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" />
+                                 <ImageView fx:id="img2" fitHeight="113.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
                               </children>
                            </AnchorPane>
                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -71,19 +73,20 @@
                                        <Font size="13.0" />
                                     </font>
                                  </Label>
+                                 <Label fx:id="hfID2" visible="false" />
                               </children>
                            </AnchorPane>
                         </items>
                      </SplitPane>
                   </graphic>
                </Button>
-               <Button  fx:id="btnProduct3" layoutX="388.0" layoutY="61.0" mnemonicParsing="false" prefHeight="173.0" prefWidth="150.0">
+               <Button fx:id="btnProduct3" layoutX="388.0" layoutY="61.0" mnemonicParsing="false" prefHeight="173.0" prefWidth="150.0">
                   <graphic>
                      <SplitPane fx:id="spProduct3" dividerPositions="0.7134502923976608" orientation="VERTICAL" prefHeight="173.0" prefWidth="143.0">
                         <items>
-                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: white;">
                               <children>
-                                 <ImageView fx:id="img3" fitHeight="119.0" fitWidth="143.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" />
+                                 <ImageView fx:id="img3" fitHeight="114.0" fitWidth="133.0" layoutX="-1.0" layoutY="-1.0" preserveRatio="true" />
                               </children>
                            </AnchorPane>
                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -98,6 +101,7 @@
                                        <Font size="13.0" />
                                     </font>
                                  </Label>
+                                 <Label fx:id="hfID3" visible="false" />
                               </children>
                            </AnchorPane>
                         </items>
@@ -108,9 +112,9 @@
                   <graphic>
                      <SplitPane fx:id="spProduct4" dividerPositions="0.7134502923976608" orientation="VERTICAL" prefHeight="173.0" prefWidth="143.0">
                         <items>
-                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: white;">
                               <children>
-                                 <ImageView fx:id="img4" fitHeight="119.0" fitWidth="143.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" />
+                                 <ImageView fx:id="img4" fitHeight="114.0" fitWidth="134.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" />
                               </children>
                            </AnchorPane>
                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -125,6 +129,7 @@
                                        <Font size="13.0" />
                                     </font>
                                  </Label>
+                                 <Label fx:id="hfID4" visible="false" />
                               </children>
                            </AnchorPane>
                         </items>
@@ -135,9 +140,9 @@
                   <graphic>
                      <SplitPane fx:id="spProduct5" dividerPositions="0.7134502923976608" orientation="VERTICAL" prefHeight="173.0" prefWidth="143.0">
                         <items>
-                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: white;">
                               <children>
-                                 <ImageView fx:id="img5" fitHeight="119.0" fitWidth="143.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" />
+                                 <ImageView fx:id="img5" fitHeight="114.0" fitWidth="134.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" />
                               </children>
                            </AnchorPane>
                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -152,6 +157,7 @@
                                        <Font size="13.0" />
                                     </font>
                                  </Label>
+                                 <Label fx:id="hfID5" visible="false" />
                               </children>
                            </AnchorPane>
                         </items>
@@ -162,9 +168,9 @@
                   <graphic>
                      <SplitPane fx:id="spProduct6" dividerPositions="0.7134502923976608" orientation="VERTICAL" prefHeight="173.0" prefWidth="143.0">
                         <items>
-                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: white;">
                               <children>
-                                 <ImageView fx:id="img6" fitHeight="119.0" fitWidth="143.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" />
+                                 <ImageView fx:id="img6" fitHeight="113.0" fitWidth="134.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" />
                               </children>
                            </AnchorPane>
                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -179,14 +185,15 @@
                                        <Font size="13.0" />
                                     </font>
                                  </Label>
+                                 <Label fx:id="hfID6" visible="false" />
                               </children>
                            </AnchorPane>
                         </items>
                      </SplitPane>
                   </graphic>
                </Button>
-               <Button fx:id="btnPrevious" layoutX="1.0" layoutY="236.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="&lt;" onAction="#loadPreviousPage" />
-               <Button fx:id="btnNext" layoutX="550.0" layoutY="236.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="27.0" text="&gt;" onAction="#loadNextPage" />
+               <Button fx:id="btnPrevious" layoutX="7.0" layoutY="236.0" mnemonicParsing="false" onAction="#loadPreviousPage" prefHeight="25.0" prefWidth="27.0" text="&lt;" />
+               <Button fx:id="btnNext" layoutX="544.0" layoutY="236.0" mnemonicParsing="false" onAction="#loadNextPage" prefHeight="25.0" prefWidth="27.0" text="&gt;" />
                <ComboBox layoutX="456.0" layoutY="14.0" prefHeight="25.0" prefWidth="94.0" promptText="Sort By">
                </ComboBox>
                <Label layoutX="28.0" layoutY="14.0" prefHeight="25.0" prefWidth="36.0" styleClass="h1" text="Sales">
@@ -194,8 +201,11 @@
                      <Font size="14.0" />
                   </font>
                </Label>
-               <Label text="0" visible="false" fx:id="hiddenfield"/>
+               <Label fx:id="hiddenfield" text="0" visible="false" />
             </children>
+            <effect>
+               <InnerShadow color="#e3e3e3" />
+            </effect>
          </AnchorPane>
       </children>
    </AnchorPane>

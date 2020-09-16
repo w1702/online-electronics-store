@@ -38,4 +38,8 @@ public class Item {
     public String getImage() {
         return image;
     }
+    
+    public String getID() {
+        return id;
+    }
 }
