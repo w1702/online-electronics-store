@@ -12,11 +12,14 @@
     <HBox>
         <Label styleClass="h1" text="Checkout"/>
     </HBox>
-    <TableView fx:id="checkoutTableView" items="${controller.shoppingCart.uniqueItemsAsList}" prefHeight="200">
+    <TableView fx:id="checkoutTableView" items="${controller.shoppingCart.itemsAsList}" prefHeight="200">
         <placeholder>
             <Label text="No results found."/>
         </placeholder>
         <columns>
+            <TableColumn text="ID">
+                <cellValueFactory><PropertyValueFactory property="id"/></cellValueFactory>
+            </TableColumn>
             <TableColumn text="Name">
                 <cellValueFactory><PropertyValueFactory property="name"/></cellValueFactory>
             </TableColumn>
@@ -26,10 +29,12 @@
             <TableColumn text="Description">
                 <cellValueFactory><PropertyValueFactory property="description"/></cellValueFactory>
             </TableColumn>
-            <TableColumn text="Quantity">
-                <cellValueFactory><PropertyValueFactory property="quantity"/></cellValueFactory>
-            </TableColumn>
         </columns>
     </TableView>
     <Text fx:id="totalCostText"/>
+    <HBox alignment="center" spacing="10">
+        <Text text="Promo code " />
+        <TextField fx:id="promoCodeTextField" />
+        <Button onAction="#handleUsePromoCode" fx:id="usePromoCodeButton" text="Use Promo Code" />
+    </HBox>
 </VBox>
