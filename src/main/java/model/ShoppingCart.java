@@ -43,6 +43,13 @@ public class ShoppingCart {
             Item item = onlineElectronicsStore.getItemById(itemId);
             totalCost += item.getCost() * itemQuantity.get(itemId);
         }
+        if(promoCodeUsed) {
+            totalCost = totalCost * (1 - onlineElectronicsStore.getDiscountValue());
+        }
         return totalCost;
+    }
+
+    public void setPromoCodeUsed(boolean promoCodeUsed) {
+        this.promoCodeUsed = promoCodeUsed;
     }
 }

@@ -19,7 +19,7 @@ public class CheckoutController extends MVCController<OnlineElectronicsStore> {
     private Button usePromoCodeButton;
 
     @FXML private void initialize(){
-        totalCostText.setText("Total Cost: " + getModel().getLoggedInUser().getShoppingCart().getTotalCost());
+        setTotalCostText();
     }
 
     public final ShoppingCart getShoppingCart(){
@@ -28,6 +28,18 @@ public class CheckoutController extends MVCController<OnlineElectronicsStore> {
 
     @FXML
     private void handleUsePromoCode(){
+        if(promoCodeTextField.getCharacters().toString().equals(getModel().getPromoCode())){
+            getShoppingCart().setPromoCodeUsed(true);
+        }
+        setTotalCostText();
+    }
 
+    @FXML
+    private void handleProceedWithCheckout(){
+
+    }
+
+    private void setTotalCostText(){
+        totalCostText.setText("Total Cost: " + getModel().getLoggedInUser().getShoppingCart().getTotalCost());
     }
 }

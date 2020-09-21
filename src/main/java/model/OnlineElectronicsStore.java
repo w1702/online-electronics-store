@@ -15,6 +15,9 @@ public class OnlineElectronicsStore {
     private ObservableList<Item> items;
     private ObservableList<User> users;
     private User loggedInUser;
+    // todo: change this to read from db
+    private String promoCode = "september";
+    private double discountValue = 0.1;
 
     public OnlineElectronicsStore(DatabaseClient databaseClient){
         this.databaseClient = databaseClient;
@@ -115,5 +118,13 @@ public class OnlineElectronicsStore {
 
     public void setLoggedInUser(User loggedInUser) {
         this.loggedInUser = loggedInUser;
+    }
+
+    public String getPromoCode() {
+        return promoCode;
+    }
+
+    public double getDiscountValue() {
+        return discountValue;
     }
 }
