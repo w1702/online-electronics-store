@@ -18,6 +18,12 @@ public class CheckoutController extends MVCController<OnlineElectronicsStore> {
     @FXML
     private Button usePromoCodeButton;
 
+    @FXML
+    private Text discountValueText;
+
+    @FXML
+    private Text subTotalCostText;
+
     @FXML private void initialize(){
         setTotalCostText();
     }
@@ -28,10 +34,12 @@ public class CheckoutController extends MVCController<OnlineElectronicsStore> {
 
     @FXML
     private void handleUsePromoCode(){
+        String totalCostBeforeDiscount = totalCostText.getText();
         if(promoCodeTextField.getCharacters().toString().equals(getModel().getPromoCode())){
             getShoppingCart().setPromoCodeUsed(true);
         }
         setTotalCostText();
+        discountValueText.setText("Before discount " + totalCostBeforeDiscount + " (discount applied: " + getModel().getDiscountValue() + ")");
     }
 
     @FXML
@@ -40,6 +48,6 @@ public class CheckoutController extends MVCController<OnlineElectronicsStore> {
     }
 
     private void setTotalCostText(){
-        totalCostText.setText("Total Cost: " + getModel().getLoggedInUser().getShoppingCart().getTotalCost());
+        totalCostText.setText("Total cost: " + getModel().getLoggedInUser().getShoppingCart().getTotalCost());
     }
 }

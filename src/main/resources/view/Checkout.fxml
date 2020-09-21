@@ -36,7 +36,10 @@
         <TextField fx:id="promoCodeTextField" />
         <Button onAction="#handleUsePromoCode" fx:id="usePromoCodeButton" text="Use Promo Code" />
     </HBox>
-    <Text fx:id="totalCostText"/>
+    <VBox alignment="center">
+        <Text fx:id="discountValueText"/>
+        <Text fx:id="totalCostText"/>
+    </VBox>
     <HBox alignment="center">
         <Button onAction="#handleProceedWithCheckout" fx:id="proceedWithCheckoutButton" text="Proceed with checkout" />
     </HBox>
