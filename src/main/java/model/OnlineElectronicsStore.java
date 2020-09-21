@@ -27,6 +27,11 @@ public class OnlineElectronicsStore {
         this.loggedInUser = users.get(0); // temporary solution
     }
 
+    // for unit testing
+    public OnlineElectronicsStore(ObservableList<Item> items){
+        this.items = items;
+    }
+
     private ObservableList<Item> fetchItemsFromDB(){
         JsonArray itemsJsonArray = databaseClient.getAppData()
                 .get("items").getAsJsonArray();
@@ -62,7 +67,7 @@ public class OnlineElectronicsStore {
                 itemQuantity.put(itemId, quantity);
             }
 
-            ShoppingCart shoppingCart = new ShoppingCart(this, itemQuantity);
+            ShoppingCart shoppingCart = new ShoppingCart(this, itemQuantity, false);
 
             User user = new User(
                     userJsonElement.getAsJsonObject().get("id").getAsJsonObject().get("$oid").getAsString(),

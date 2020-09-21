@@ -9,10 +9,10 @@ public class ShoppingCart {
     private ObservableMap<String, Integer> itemQuantity;
     private boolean promoCodeUsed;
 
-    public ShoppingCart(OnlineElectronicsStore onlineElectronicsStore, ObservableMap<String, Integer> itemQuantity){
+    public ShoppingCart(OnlineElectronicsStore onlineElectronicsStore, ObservableMap<String, Integer> itemQuantity, boolean promoCodeUsed){
         this.onlineElectronicsStore = onlineElectronicsStore;
         this.itemQuantity = itemQuantity;
-        this.promoCodeUsed = false;
+        this.promoCodeUsed = promoCodeUsed;
     }
 
     public ObservableList<Item> getItemsAsList(){
