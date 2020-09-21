@@ -4,9 +4,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import model.OnlineElectronicsStore;
 import model.ShoppingCart;
 import utils.MVCController;
+import utils.UILoader;
+
+import java.io.IOException;
 
 public class CheckoutController extends MVCController<OnlineElectronicsStore> {
     @FXML
@@ -43,8 +47,8 @@ public class CheckoutController extends MVCController<OnlineElectronicsStore> {
     }
 
     @FXML
-    private void handleProceedWithCheckout(){
-
+    private void handleProceedWithCheckout() throws IOException {
+        UILoader.render(new Stage(), getModel(), "/view/Payment.fxml", "Payment");
     }
 
     private void setTotalCostText(){
