@@ -25,7 +25,7 @@ class ShoppingCartTest {
         itemQuantity.put("product2", 1);
 
         // using a promo code
-        ShoppingCart shoppingCart = new ShoppingCart(onlineElectronicsStore, itemQuantity, true);
+        ShoppingCart shoppingCart = new ShoppingCart(itemQuantity, true);
 
         // Act - call the method
         double totalCost = shoppingCart.getTotalCost();

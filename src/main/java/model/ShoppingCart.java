@@ -9,8 +9,7 @@ public class ShoppingCart {
     private ObservableMap<String, Integer> itemQuantity;
     private boolean promoCodeUsed;
 
-    public ShoppingCart(OnlineElectronicsStore onlineElectronicsStore, ObservableMap<String, Integer> itemQuantity, boolean promoCodeUsed){
-        this.onlineElectronicsStore = onlineElectronicsStore;
+    public ShoppingCart(ObservableMap<String, Integer> itemQuantity, boolean promoCodeUsed){
         this.itemQuantity = itemQuantity;
         this.promoCodeUsed = promoCodeUsed;
     }
@@ -51,5 +50,12 @@ public class ShoppingCart {
 
     public void setPromoCodeUsed(boolean promoCodeUsed) {
         this.promoCodeUsed = promoCodeUsed;
+    }
+
+
+    // todo: revise this hacky code
+    // for setting shopping cart property manually
+    void setOnlineElectronicsStore(OnlineElectronicsStore onlineElectronicsStore){
+        this.onlineElectronicsStore = onlineElectronicsStore;
     }
 }
