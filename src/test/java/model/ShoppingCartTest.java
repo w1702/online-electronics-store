@@ -13,8 +13,8 @@ class ShoppingCartTest {
     public void getTotalCostTest(){
         // Arrange - setup the data
         ObservableList<Item> storeItems = FXCollections.observableArrayList();
-        Item product1 = new Item(null, "product1", "someProduct", 1000, null);
-        Item product2 = new Item(null, "product2", "someProduct", 2000, null);
+        Item product1 = new Item(null, "product1", "someProduct", 1000, null, null);
+        Item product2 = new Item(null, "product2", "someProduct", 2000, null, null);
         storeItems.add(product1);
         storeItems.add(product2);
 
