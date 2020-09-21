@@ -16,8 +16,8 @@ public class OnlineElectronicsStore {
     private ObservableList<User> users;
     private User loggedInUser;
     // todo: change this to read from db
-    private String promoCode = "september";
-    private double discountValue = 0.1;
+    private String promoCode;
+    private double discountValue;
 
     public OnlineElectronicsStore(DatabaseClient databaseClient){
         this.databaseClient = databaseClient;
@@ -25,6 +25,8 @@ public class OnlineElectronicsStore {
         this.users = fetchUsersFromDB();
         // todo: set the logged in user on login
         this.loggedInUser = users.get(0); // temporary solution
+        this.promoCode = fetchPromoCodeFromDB();
+        this.discountValue = fetchDiscountValueFrom();
     }
 
     // for unit testing
@@ -76,6 +78,18 @@ public class OnlineElectronicsStore {
             users.add(user);
         }
         return users;
+    }
+
+    private String fetchPromoCodeFromDB(){
+        return databaseClient.getAppData()
+                .get("promotion").getAsJsonObject()
+                .get("promoCode").getAsString();
+    }
+
+    private double fetchDiscountValueFrom(){
+        return databaseClient.getAppData()
+                .get("promotion").getAsJsonObject()
+                .get("discountValue").getAsDouble();
     }
 
     private ObservableList<Review> getReviewsFromItemsJsonElement(JsonElement itemJsonElement){
