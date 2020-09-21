@@ -19,8 +19,8 @@
                <Font size="15.0" />
             </font>
          </Label>
-         <Button fx:id="searchBtn1" layoutX="555.0" layoutY="34.0" onAction="#handleSearchItems" text="Search" />
-         <TextField layoutX="231.0" layoutY="34.0" prefHeight="25.0" prefWidth="308.0" promptText="Type to search for an item..." />
+         <Button fx:id="searchBtn" layoutX="555.0" layoutY="34.0" onAction="#handleSearchItems" text="Search" />
+         <TextField fx:id="txtsearchKeyword" layoutX="231.0" layoutY="34.0" prefHeight="25.0" prefWidth="308.0" promptText="Type to search for an item..." />
          <AnchorPane layoutX="25.0" layoutY="77.0" prefHeight="500.0" prefWidth="578.0" style="-fx-background-color: white;">
             <children>
                <ComboBox fx:id="cbSortBy1" layoutX="413.0" layoutY="49.0" onAction="#cbSortByOnSelectedIndexChanged" prefHeight="25.0" prefWidth="120.0" promptText="Sort By" />

@@ -11,6 +11,8 @@ import java.util.Base64;
 import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -19,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Item;
 import model.OnlineElectronicsStore;
@@ -72,7 +75,6 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
     @FXML private SplitPane spProduct4;
     @FXML private SplitPane spProduct5;
     @FXML private SplitPane spProduct6;
-    private Object completeImageData;
     
    
     // public final methods (Get methods from model) --------------------------------------------------------------------------------------------------------------->
@@ -120,6 +122,8 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
     @FXML private void initialize(){
         getData(0); // get first 6 items
         btnPrevious.setDisable(true);
+        
+        
         cbSortBy.getItems().addAll("Sort By", "Name: A to Z", "Name: Z to A", "Price: Lowest", "Price: Highest", "Time: Newest", "Time: Oldest"); // bind combobox
     }
     
@@ -174,8 +178,13 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
     }
     
      // Go to view items details page
-    @FXML private void handleViewDetails(ActionEvent event) throws Exception {
-        UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/SearchItems.fxml", "Search Items");
+    @FXML private void handleViewDetails() throws Exception {
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("SearchItemsController.java"));
+//        SearchItemsController controller1 = new SearchItemsController();
+//        SearchItemsController controller = loader.getController();
+//        controller1.initData(hiddenfield.getText());
+//        
+//        UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/SearchItems.fxml", "Search Items");
     }
     
     // Go to search page

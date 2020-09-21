@@ -3,6 +3,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.OnlineElectronicsStore;
 import model.Item;
@@ -11,8 +12,8 @@ import utils.UILoader;
 
 
 public class SearchItemsController extends MVCController<OnlineElectronicsStore> {
-    @FXML
-    private TableView itemTableView;
+    
+    @FXML private TextField txtsearchKeyword;
 
     public final OnlineElectronicsStore getOnlineElectronicsStore(){
         return getModel();
@@ -39,5 +40,9 @@ public class SearchItemsController extends MVCController<OnlineElectronicsStore>
 //        } else {
 //            getData(0); // get original order
 //        }
+    }
+    
+    public void initData(String keywords){
+        txtsearchKeyword.setText(keywords);
     }
 }
