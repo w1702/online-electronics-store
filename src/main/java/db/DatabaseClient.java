@@ -29,7 +29,7 @@ public class DatabaseClient {
         MongoClientURI uri = new MongoClientURI(URI);
         MongoClient mongoClient = new MongoClient(uri);
         MongoDatabase database = mongoClient.getDatabase(DATABASE_NAME);
-        List<Document> documents = new ArrayList<Document>();
+        List<Document> documents = new ArrayList<>();
         try {
             MongoCollection<Document> collection = database.getCollection(COLLECTION_NAME_ONLINE_ELECTRONICS_STORE);
             for (Document document : collection.find()) {
@@ -50,4 +50,6 @@ public class DatabaseClient {
     public JsonObject getAppData(){
         return JsonParser.parseString(appData.toJson()).getAsJsonObject();
     }
+
+
 }
