@@ -54,7 +54,8 @@ public class DatabaseClient {
                     itemJsonElement.getAsJsonObject().get("id").getAsJsonObject().get("$oid").getAsString(),
                     itemJsonElement.getAsJsonObject().get("name").getAsString(),
                     itemJsonElement.getAsJsonObject().get("cost").getAsDouble(),
-                    itemJsonElement.getAsJsonObject().get("description").getAsString()
+                    itemJsonElement.getAsJsonObject().get("description").getAsString(),
+                    itemJsonElement.getAsJsonObject().get("image").getAsString()
             );
             itemsObservableList.add(item);
         }

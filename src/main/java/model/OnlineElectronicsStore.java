@@ -80,6 +80,7 @@ public class OnlineElectronicsStore {
 
     public double getDiscountValue() {
         return discountValue;
+    }
 
     // Get Sorted Items, can sort by name, cost(Price), id(Created time) in ASC or DESC order
     public List<Item> getSortedItems(String sortBy, String order) {

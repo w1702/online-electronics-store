@@ -6,6 +6,7 @@
 package controller;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Base64;
 import java.util.List;
@@ -341,6 +342,9 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
             btnProduct6.setVisible(true);
         }
     }
-   
-   
+
+    @FXML
+    public void handleCheckout() throws IOException {
+        UILoader.render(new Stage(), getModel(), "/view/Checkout.fxml", "Checkout");
+    }
 }
