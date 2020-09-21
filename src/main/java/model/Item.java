@@ -1,6 +1,10 @@
 package model;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.Base64;
 import java.util.List;
+import javafx.scene.image.Image;
 
 public class Item {
     private List<Review> reviews;
@@ -42,4 +46,14 @@ public class Item {
     public String getID() {
         return id;
     }
+    
+    public Image getConvertBase64toImage() {
+        // Convert Base64 to Image
+        String base64Image = image.split(",")[1];
+        byte[] imageBytes = Base64.getDecoder().decode(base64Image);
+        InputStream stream = new ByteArrayInputStream(imageBytes);
+        Image image = new Image(stream);
+        return image;
+    }
+    
 }

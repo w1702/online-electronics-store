@@ -24,13 +24,13 @@
          </TextField>
          <AnchorPane layoutX="29.0" layoutY="78.0" prefHeight="460.0" prefWidth="578.0" style="-fx-background-color: white;">
             <children>
-               <Button layoutX="40.0" layoutY="61.0" mnemonicParsing="false" prefHeight="173.0" prefWidth="150.0">
+               <Button layoutX="40.0" layoutY="61.0" mnemonicParsing="false" prefHeight="173.0" prefWidth="150.0" onAction="#handleViewDetails">
                   <graphic>
-                     <SplitPane dividerPositions="0.7134502923976608" orientation="VERTICAL" prefHeight="173.0" prefWidth="143.0">
+                     <SplitPane dividerPositions="0.7134502923976608" orientation="VERTICAL" prefHeight="173.0" prefWidth="143.0" >
                        <items>
                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: white;">
                               <children>
-                                 <ImageView fx:id="img1" fitHeight="114.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true" />
+                                 <ImageView fx:id="img1" fitHeight="114.0" fitWidth="133.0" pickOnBounds="true" preserveRatio="true"/>
                               </children>
                            </AnchorPane>
                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -52,7 +52,7 @@
                      </SplitPane>
                   </graphic>
                </Button>
-               <Button fx:id="btnProduct2" layoutX="212.0" layoutY="61.0" mnemonicParsing="false" prefHeight="173.0" prefWidth="150.0">
+               <Button fx:id="btnProduct2" layoutX="212.0" layoutY="61.0" mnemonicParsing="false" prefHeight="173.0" prefWidth="150.0" onAction="#handleViewDetails">
                   <graphic>
                      <SplitPane fx:id="spProduct2" dividerPositions="0.7134502923976608" orientation="VERTICAL" prefHeight="173.0" prefWidth="143.0">
                         <items>
@@ -80,7 +80,7 @@
                      </SplitPane>
                   </graphic>
                </Button>
-               <Button fx:id="btnProduct3" layoutX="388.0" layoutY="61.0" mnemonicParsing="false" prefHeight="173.0" prefWidth="150.0">
+               <Button fx:id="btnProduct3" layoutX="388.0" layoutY="61.0" mnemonicParsing="false" prefHeight="173.0" prefWidth="150.0" onAction="#handleViewDetails">
                   <graphic>
                      <SplitPane fx:id="spProduct3" dividerPositions="0.7134502923976608" orientation="VERTICAL" prefHeight="173.0" prefWidth="143.0">
                         <items>
@@ -108,7 +108,7 @@
                      </SplitPane>
                   </graphic>
                </Button>
-               <Button fx:id="btnProduct4" layoutX="40.0" layoutY="264.0" mnemonicParsing="false" prefHeight="173.0" prefWidth="150.0">
+               <Button fx:id="btnProduct4" layoutX="40.0" layoutY="264.0" mnemonicParsing="false" prefHeight="173.0" prefWidth="150.0" onAction="#handleViewDetails">
                   <graphic>
                      <SplitPane fx:id="spProduct4" dividerPositions="0.7134502923976608" orientation="VERTICAL" prefHeight="173.0" prefWidth="143.0">
                         <items>
@@ -136,7 +136,7 @@
                      </SplitPane>
                   </graphic>
                </Button>
-               <Button fx:id="btnProduct5" layoutX="212.0" layoutY="264.0" mnemonicParsing="false" prefHeight="173.0" prefWidth="150.0">
+               <Button fx:id="btnProduct5" layoutX="212.0" layoutY="264.0" mnemonicParsing="false" prefHeight="173.0" prefWidth="150.0" onAction="#handleViewDetails">
                   <graphic>
                      <SplitPane fx:id="spProduct5" dividerPositions="0.7134502923976608" orientation="VERTICAL" prefHeight="173.0" prefWidth="143.0">
                         <items>
@@ -164,7 +164,7 @@
                      </SplitPane>
                   </graphic>
                </Button>
-               <Button fx:id="btnProduct6" layoutX="388.0" layoutY="264.0" mnemonicParsing="false" prefHeight="173.0" prefWidth="150.0">
+               <Button fx:id="btnProduct6" layoutX="388.0" layoutY="264.0" mnemonicParsing="false" prefHeight="173.0" prefWidth="150.0" onAction="#handleViewDetails">
                   <graphic>
                      <SplitPane fx:id="spProduct6" dividerPositions="0.7134502923976608" orientation="VERTICAL" prefHeight="173.0" prefWidth="143.0">
                         <items>
@@ -194,7 +194,7 @@
                </Button>
                <Button fx:id="btnPrevious" layoutX="7.0" layoutY="236.0" mnemonicParsing="false" onAction="#loadPreviousPage" prefHeight="25.0" prefWidth="27.0" text="&lt;" />
                <Button fx:id="btnNext" layoutX="544.0" layoutY="236.0" mnemonicParsing="false" onAction="#loadNextPage" prefHeight="25.0" prefWidth="27.0" text="&gt;" />
-               <ComboBox layoutX="456.0" layoutY="14.0" prefHeight="25.0" prefWidth="94.0" promptText="Sort By">
+               <ComboBox fx:id="cbSortBy" layoutX="424.0" layoutY="14.0" prefHeight="25.0" prefWidth="120.0" promptText="Sort By" onAction="#cbSortByOnSelectedIndexChanged">
                </ComboBox>
                <Label layoutX="28.0" layoutY="14.0" prefHeight="25.0" prefWidth="36.0" styleClass="h1" text="Sales">
                   <font>

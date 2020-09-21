@@ -5,29 +5,26 @@
  */
 package controller;
 
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.Base64;
 import java.util.List;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javax.imageio.ImageIO;
 import model.Item;
 import model.OnlineElectronicsStore;
 import utils.MVCController;
 import utils.UILoader;
+
 
 /**
  * FXML Controller class
@@ -61,6 +58,7 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
     @FXML private Label hfID6;
     @FXML private TextField txtsearchKeyword;
     @FXML private Label hiddenfield;
+    @FXML private ComboBox cbSortBy;
     
     @FXML private Button btnPrevious;
     @FXML private Button btnNext;
@@ -77,7 +75,7 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
     private Object completeImageData;
     
    
-    // public final methods --------------------------------------------------------------------------------------------------------------->
+    // public final methods (Get methods from model) --------------------------------------------------------------------------------------------------------------->
     
     public final OnlineElectronicsStore getOnlineElectronicsStore(){
         return getModel();
@@ -91,21 +89,55 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
         return getModel().getItems();
     }
     
+    public final List<Item> getSortedItems(String sortBy) {
+        String order = new String();
+        String[] sort = sortBy.split(": ");
+        switch (sort[0]){ // set sortBy
+            case "Name":
+                sortBy = "name";
+                break;
+            case "Price":
+                sortBy = "cost";
+                break;
+            case "Time":
+                sortBy = "id";
+                break;
+            default:
+                return getItems();
+        }
+        if (sort[1].equals("A to Z") || sort[1].equals("Lowest") || sort[1].equals("Oldest")){ // set order
+            order = "ASC";
+        } else {
+            order = "DESC";
+        }
+        return getModel().getSortedItems(sortBy, order);
+    }
+    
+    
     // @FXML methods --------------------------------------------------------------------------------------------------------------------->
     
     // initialize method for view all items
     @FXML private void initialize(){
-        GetData(0); // get first 6 items
+        getData(0); // get first 6 items
         btnPrevious.setDisable(true);
+        cbSortBy.getItems().addAll("Sort By", "Name: A to Z", "Name: Z to A", "Price: Lowest", "Price: Highest", "Time: Newest", "Time: Oldest"); // bind combobox
     }
     
      // Load next 6 items 
     @FXML private void loadNextPage(ActionEvent event) throws Exception {
-        clearData();
         String hfNumber = hiddenfield.getText();
         int number = Integer.parseInt(hfNumber) + 6;
         hiddenfield.setText(Integer.toString(number)); 
-        GetData(number);
+        if (!cbSortBy.getSelectionModel().isEmpty()){
+            String sortBy = cbSortBy.getSelectionModel().getSelectedItem().toString();
+            if (sortBy != "Sort By"){
+                getSortedData(sortBy, number); // get sorted order
+            } else {
+                getData(number); // get original order
+            }
+        } else {
+            getData(number); // get original order
+        }
         if (number > 0) {
             btnPrevious.setDisable(false);
         }
@@ -113,19 +145,37 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
     
     // Load previous 6 items
     @FXML private void loadPreviousPage(ActionEvent event) throws Exception {
-        clearData();
         String hfNumber = hiddenfield.getText();
         int number = Integer.parseInt(hfNumber) - 6;
         hiddenfield.setText(Integer.toString(number));
-        GetData(number);
+        if (!cbSortBy.getSelectionModel().isEmpty()){
+            String sortBy = cbSortBy.getSelectionModel().getSelectedItem().toString();
+            if (sortBy != "Sort By"){
+                getSortedData(sortBy, number); // get sorted order
+            } else {
+                getData(number); // get original order
+            }
+        } else {
+            getData(number); // get original order
+        }
         if (number == 0){
              btnPrevious.setDisable(true);
         }
     }
     
+    @FXML private void cbSortByOnSelectedIndexChanged(ActionEvent event) throws Exception {
+        hiddenfield.setText("0"); // reset hfNumber
+        String sortBy = cbSortBy.getSelectionModel().getSelectedItem().toString();
+        if (sortBy != "Sort By"){
+            getSortedData(sortBy, 0); // get sorted order
+        } else {
+            getData(0); // get original order
+        }
+    }
+    
      // Go to view items details page
     @FXML private void handleViewDetails(ActionEvent event) throws Exception {
-        //UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/SearchItems.fxml", "Search Items");
+        UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/SearchItems.fxml", "Search Items");
     }
     
     // Go to search page
@@ -133,22 +183,25 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
         UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/SearchItems.fxml", "Search Items");
     }
     
-    // private methods for @FXML --------------------------------------------------------------------------------------------------------->
+    // public methods for @FXML --------------------------------------------------------------------------------------------------------->
     
-    private void GetData(int i){
+    public void getData(int i){
+        clearData();
         String id = null;
         String name = null;
-        String image = null;
+        Image image = null;
         Double price = null;
+        String description = null;
         // Bind items list
         List<Item> items = getItems();
         for( int j = i; j < i + 6; j++) {
             if (j < items.size()){
                 id = items.get(j).getID();
                 name = items.get(j).getName();
-                image = items.get(j).getImage();
+                image = items.get(j).getConvertBase64toImage();
                 price = items.get(j).getCost();
-                DataBind(id, name, image, price);
+                description = items.get(j).getDescription();
+                dataBind(id, name, image, price, description);
                 btnNext.setDisable(false);
             } else {
                 btnNext.setDisable(true);
@@ -158,48 +211,68 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
         displayProductBox();
     }
     
-    private void DataBind(String id, String name, String image, Double price){
+    public void getSortedData(String sortBy, int i){
+        clearData();
+        String id = null;
+        String name = null;
+        Image image = null;
+        Double price = null;
+        String description = null;
+        // Bind items list
+        List<Item> items = getSortedItems(sortBy);
+        for( int j = i; j < i + 6; j++) {
+            if (j < items.size()){
+                id = items.get(j).getID();
+                name = items.get(j).getName();
+                image = items.get(j).getConvertBase64toImage();
+                price = items.get(j).getCost();
+                description = items.get(j).getDescription();
+                dataBind(id, name, image, price, description);
+                btnNext.setDisable(false);
+            } else {
+                btnNext.setDisable(true);
+                break;
+            }
+        }
+        displayProductBox();
+    }
+    
+    public void dataBind(String id, String name, Image image, Double price, String description){
         if (lblName1.getText() == ""){
             lblName1.setText(name);
             lblPrice1.setText("$ " + price.toString());
             hfID1.setText(id);
-            convertBase64toImage(image, img1);
+            convertBase64toImage(image, img1, description);
         } else if (lblName2.getText() == ""){
             lblName2.setText(name);
             lblPrice2.setText("$ " + price.toString());
             hfID2.setText(id);
-            convertBase64toImage(image, img2);
+            convertBase64toImage(image, img2, description);
         } else if (lblName3.getText() == "") {
             lblName3.setText(name);
             lblPrice3.setText("$ " + price.toString());
             hfID3.setText(id);
-            convertBase64toImage(image, img3);
+            convertBase64toImage(image, img3, description);
         } else if (lblName4.getText() == "") {
             lblName4.setText(name);
             lblPrice4.setText("$ " + price.toString());
             hfID4.setText(id);
-            convertBase64toImage(image, img4);
+            convertBase64toImage(image, img4, description);
         } else if (lblName5.getText() == "") {
             lblName5.setText(name);
             lblPrice5.setText("$ " + price.toString());
             hfID5.setText(id);
-            convertBase64toImage(image, img5);
+            convertBase64toImage(image, img5, description);
         } else if (lblName6.getText() == "") {
             lblName6.setText(name);
             lblPrice6.setText("$ " + price.toString());
             hfID6.setText(id);
-            convertBase64toImage(image, img6);
+            convertBase64toImage(image, img6, description);
         }
     }
     
-    private void convertBase64toImage(String imageDataBytes, ImageView img){
-        if (!imageDataBytes.isEmpty()){
-            // Convert Base64 to Image
-            String base64Image = imageDataBytes.split(",")[1];
-            byte[] imageBytes = javax.xml.bind.DatatypeConverter.parseBase64Binary(base64Image);
-            InputStream stream = new ByteArrayInputStream(imageBytes);
-            Image image = new Image(stream);
-            
+    public void convertBase64toImage(Image image, ImageView img, String description){
+        if (!image.toString().isEmpty()){
             // Centeralize the image in imageview
             double w = 0;
             double h = 0;
@@ -218,10 +291,12 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
             
             // Set image in imageview
             img.setImage(image);
+            // Set description as the imageview's tooltip
+            Tooltip.install(img, new Tooltip(description));
         }
     }
     
-    private void clearData(){
+    public void clearData(){
         lblName1.setText("");
         lblName2.setText("");
         lblName3.setText("");
@@ -230,7 +305,7 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
         lblName6.setText("");
     }
     
-    private void displayProductBox(){
+    public void displayProductBox(){
         if (lblName2.getText() == ""){
             btnProduct2.setVisible(false);
         } else {

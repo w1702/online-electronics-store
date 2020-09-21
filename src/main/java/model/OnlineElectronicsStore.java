@@ -2,11 +2,14 @@ package model;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import db.DatabaseClient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class OnlineElectronicsStore {
@@ -74,7 +77,6 @@ public class OnlineElectronicsStore {
         return items;
     }
     
-
     public List<User> getUsers() {
         return users;
     }
@@ -89,5 +91,49 @@ public class OnlineElectronicsStore {
 
     public List<Item> getItems() {
         return items;
+    }
+    
+    // Get Sorted Items, can sort by name, cost(Price), id(Created time) in ASC or DESC order
+    public List<Item> getSortedItems(String sortBy, String order) {
+        List<Item> itemsList = getItems();
+        List<Item> compareList = new ArrayList<>();
+        for (Item item : itemsList){
+            compareList.add(item);
+        }
+        Collections.sort(compareList, new Comparator<Item>() {
+            @Override
+            public int compare(Item itemA, Item itemB) {
+                if (sortBy.equals("cost")) { // sort by cost
+                    Double valA = itemA.getCost();
+                    Double valB = itemB.getCost();
+                    if (order == "DESC"){
+                        return -valA.compareTo(valB); // descending
+                    } else {
+                        return valA.compareTo(valB); // ascending
+                    }
+                } else if (sortBy.equals("name")) { // sort by name
+                    String valA = itemA.getName();
+                    String valB = itemB.getName();
+                    if (order == "DESC"){
+                        return -valA.compareTo(valB); // descending
+                    } else {
+                        return valA.compareTo(valB); // ascending
+                    }
+                } else { // default: sort by ID
+                    String valA = itemA.getID();
+                    String valB = itemB.getID();
+                    if (order == "DESC"){
+                        return -valA.compareTo(valB); // descending
+                    } else {
+                        return valA.compareTo(valB); // ascending
+                    }
+                }
+            }
+        });
+        List<Item> sortedItems = new ArrayList<>();
+        for (Item item : compareList){
+            sortedItems.add(item);
+        }
+        return sortedItems; // return sortedItem list
     }
 }
