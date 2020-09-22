@@ -19,6 +19,7 @@ class ShoppingCartTest {
         storeItems.add(product2);
 
         OnlineElectronicsStore onlineElectronicsStore = new OnlineElectronicsStore(storeItems);
+        onlineElectronicsStore.setDiscountValue(0.1);
 
         ObservableMap<String, Integer> itemQuantity = FXCollections.observableHashMap();
         itemQuantity.put("product1", 1);
@@ -26,6 +27,7 @@ class ShoppingCartTest {
 
         // using a promo code
         ShoppingCart shoppingCart = new ShoppingCart(itemQuantity, true);
+        shoppingCart.setOnlineElectronicsStore(onlineElectronicsStore);
 
         // Act - call the method
         double totalCost = shoppingCart.getTotalCost();

@@ -82,6 +82,10 @@ public class OnlineElectronicsStore {
         return discountValue;
     }
 
+    void setDiscountValue(double discountValue){
+        this.discountValue = discountValue;
+    }
+
     // Get Sorted Items, can sort by name, cost(Price), id(Created time) in ASC or DESC order
     public List<Item> getSortedItems(String sortBy, String order) {
         List<Item> itemsList = getItems();
