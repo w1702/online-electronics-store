@@ -35,7 +35,6 @@ public class ShoppingCart {
         return itemQuantity;
     }
 
-    // todo: write unit test for this
     public double getTotalCost(){
         double totalCost = 0;
         for (String itemId : itemQuantity.keySet()) {
