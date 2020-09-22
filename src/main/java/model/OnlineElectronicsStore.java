@@ -20,6 +20,7 @@ public class OnlineElectronicsStore {
     // todo: change this to read from db
     private String promoCode;
     private double discountValue;
+    private String currentlySelectedItem;
 
     public OnlineElectronicsStore(DatabaseClient databaseClient){
         this.databaseClient = databaseClient;
@@ -124,5 +125,13 @@ public class OnlineElectronicsStore {
             sortedItems.add(item);
         }
         return sortedItems; // return sortedItem list
+    }
+    
+    public void setCurrentlySelectedItem(String currentlySelectedItem){
+        this.currentlySelectedItem = currentlySelectedItem;
+    }
+    
+    public String getCurrentlySelectedItem(){
+        return currentlySelectedItem;
     }
 }
