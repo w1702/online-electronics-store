@@ -41,9 +41,12 @@ public class CheckoutController extends MVCController<OnlineElectronicsStore> {
         String totalCostBeforeDiscount = totalCostText.getText();
         if(promoCodeTextField.getCharacters().toString().equals(getModel().getPromoCode())){
             getShoppingCart().setPromoCodeUsed(true);
+            discountValueText.setText("Before discount " + totalCostBeforeDiscount + " (discount applied: " + getModel().getDiscountValue() + ")");
+        }
+        else{
+            discountValueText.setText("Not a valid promo code");
         }
         setTotalCostText();
-        discountValueText.setText("Before discount " + totalCostBeforeDiscount + " (discount applied: " + getModel().getDiscountValue() + ")");
     }
 
     @FXML
