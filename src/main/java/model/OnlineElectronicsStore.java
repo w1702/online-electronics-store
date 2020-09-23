@@ -2,11 +2,13 @@ package model;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import db.DatabaseClient;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class OnlineElectronicsStore {
@@ -15,74 +17,29 @@ public class OnlineElectronicsStore {
     private ObservableList<Item> items;
     private ObservableList<User> users;
     private User loggedInUser;
+    // todo: change this to read from db
+    private String promoCode;
+    private double discountValue;
 
     public OnlineElectronicsStore(DatabaseClient databaseClient){
         this.databaseClient = databaseClient;
-        this.items = fetchItemsFromDB();
-        this.users = fetchUsersFromDB();
+        this.items = databaseClient.readItemsFromDB();
+        this.users = databaseClient.readUsersFromDB();
         // todo: set the logged in user on login
         this.loggedInUser = users.get(0); // temporary solution
+        this.promoCode = databaseClient.readPromoCodeFromDB();
+        this.discountValue = databaseClient.readDiscountValueFromDB();
+
+        // todo: revise this hacky code
+        // setting shopping cart property manually
+        for (User user : users) {
+            user.getShoppingCart().setOnlineElectronicsStore(this);
+        }
     }
 
-    private ObservableList<Item> fetchItemsFromDB(){
-        JsonArray itemsJsonArray = databaseClient.getAppData()
-                .get("items").getAsJsonArray();
-        ObservableList<Item> itemsObservableList = FXCollections.observableArrayList();
-        for (JsonElement itemJsonElement : itemsJsonArray) {
-            Item item = new Item(
-                    getReviewsFromItemsJsonElement(itemJsonElement),
-                    itemJsonElement.getAsJsonObject().get("id").getAsJsonObject().get("$oid").getAsString(),
-                    itemJsonElement.getAsJsonObject().get("name").getAsString(),
-                    itemJsonElement.getAsJsonObject().get("cost").getAsDouble(),
-                    itemJsonElement.getAsJsonObject().get("description").getAsString()
-            );
-            itemsObservableList.add(item);
-        }
-        return itemsObservableList;
-    }
-
-    private ObservableList<User> fetchUsersFromDB(){
-        ObservableList<User> users = FXCollections.observableArrayList();
-        JsonArray usersJsonArray = databaseClient.getAppData()
-                .get("users").getAsJsonArray();
-        // todo: fetch other fields of the user object
-        for (JsonElement userJsonElement : usersJsonArray) {
-
-            // todo: initializing cart items may not be needed in final version
-            ObservableMap<String, Integer> itemQuantity = FXCollections.observableHashMap();
-            JsonArray cartItemsJsonArray = userJsonElement.getAsJsonObject()
-                    .get("shoppingCart").getAsJsonObject()
-                    .get("itemQuantity").getAsJsonArray();
-            for (JsonElement cartItemJsonElement : cartItemsJsonArray) {
-                String itemId = cartItemJsonElement.getAsJsonObject().get("id").getAsJsonObject().get("$oid").getAsString();
-                Integer quantity = cartItemJsonElement.getAsJsonObject().get("quantity").getAsJsonObject().get("$numberLong").getAsInt();
-                itemQuantity.put(itemId, quantity);
-            }
-
-            ShoppingCart shoppingCart = new ShoppingCart(this, itemQuantity);
-
-            User user = new User(
-                    userJsonElement.getAsJsonObject().get("id").getAsJsonObject().get("$oid").getAsString(),
-                    shoppingCart
-            );
-            users.add(user);
-        }
-        return users;
-    }
-
-    private ObservableList<Review> getReviewsFromItemsJsonElement(JsonElement itemJsonElement){
-        ObservableList<Review> reviews = FXCollections.observableArrayList();
-        JsonArray reviewsJsonArray = itemJsonElement.getAsJsonObject().get("reviews").getAsJsonArray();
-        for (JsonElement reviewJsonElement : reviewsJsonArray) {
-            Review review = new Review(
-                    reviewJsonElement.getAsJsonObject().get("id").getAsJsonObject().get("$oid").getAsString(),
-                    reviewJsonElement.getAsJsonObject().get("date").getAsString(),
-                    reviewJsonElement.getAsJsonObject().get("comment").getAsString(),
-                    reviewJsonElement.getAsJsonObject().get("userId").getAsJsonObject().get("$oid").getAsString()
-            );
-            reviews.add(review);
-        }
-        return reviews;
+    // for unit testing
+    public OnlineElectronicsStore(ObservableList<Item> items){
+        this.items = items;
     }
 
     public Item getItemById(String itemId){
@@ -115,5 +72,61 @@ public class OnlineElectronicsStore {
 
     public void setLoggedInUser(User loggedInUser) {
         this.loggedInUser = loggedInUser;
+    }
+
+    public String getPromoCode() {
+        return promoCode;
+    }
+
+    public double getDiscountValue() {
+        return discountValue;
+    }
+
+    void setDiscountValue(double discountValue){
+        this.discountValue = discountValue;
+    }
+
+    // Get Sorted Items, can sort by name, cost(Price), id(Created time) in ASC or DESC order
+    public List<Item> getSortedItems(String sortBy, String order) {
+        List<Item> itemsList = getItems();
+        List<Item> compareList = new ArrayList<>();
+        for (Item item : itemsList){
+            compareList.add(item);
+        }
+        Collections.sort(compareList, new Comparator<Item>() {
+            @Override
+            public int compare(Item itemA, Item itemB) {
+                if (sortBy.equals("cost")) { // sort by cost
+                    Double valA = itemA.getCost();
+                    Double valB = itemB.getCost();
+                    if (order == "DESC"){
+                        return -valA.compareTo(valB); // descending
+                    } else {
+                        return valA.compareTo(valB); // ascending
+                    }
+                } else if (sortBy.equals("name")) { // sort by name
+                    String valA = itemA.getName();
+                    String valB = itemB.getName();
+                    if (order == "DESC"){
+                        return -valA.compareTo(valB); // descending
+                    } else {
+                        return valA.compareTo(valB); // ascending
+                    }
+                } else { // default: sort by ID
+                    String valA = itemA.getID();
+                    String valB = itemB.getID();
+                    if (order == "DESC"){
+                        return -valA.compareTo(valB); // descending
+                    } else {
+                        return valA.compareTo(valB); // ascending
+                    }
+                }
+            }
+        });
+        List<Item> sortedItems = new ArrayList<>();
+        for (Item item : compareList){
+            sortedItems.add(item);
+        }
+        return sortedItems; // return sortedItem list
     }
 }
