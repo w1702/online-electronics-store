@@ -178,14 +178,17 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
         }
     }
     
-     // Go to view items details page
+    // Go to view items details page
     @FXML private void handleViewDetails() throws Exception {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("SearchItemsController.java"));
-//        SearchItemsController controller1 = new SearchItemsController();
-//        SearchItemsController controller = loader.getController();
-//        controller1.initData(hiddenfield.getText());
-//        
-//        UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/SearchItems.fxml", "Search Items");
+    	
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewDetailsController.java"));
+    ViewDetailsController controller = loader.getController();
+     controller.initData();
+      
+      
+      
+      UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/ViewDetails.fxml", "View Details");
+      
     }
     
     // Go to search page
