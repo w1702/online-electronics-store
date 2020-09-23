@@ -70,7 +70,7 @@ public class LoginController extends MVCController<OnlineElectronicsStore> {
             stage.close();
 
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/Success.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/ViewAllItems.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage1 = new Stage();
                 stage1.initModality(Modality.APPLICATION_MODAL);
