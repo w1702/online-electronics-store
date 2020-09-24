@@ -1,8 +1,9 @@
 package controller;
 
+import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableView;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.OnlineElectronicsStore;
@@ -14,7 +15,10 @@ import utils.UILoader;
 public class SearchItemsController extends MVCController<OnlineElectronicsStore> {
     
     @FXML private TextField txtsearchKeyword;
+    @FXML private ComboBox cbSortBy;
 
+    // public final methods (Get methods from model) --------------------------------------------------------------------------------------------------------------->
+    
     public final OnlineElectronicsStore getOnlineElectronicsStore(){
         return getModel();
     }
@@ -24,7 +28,56 @@ public class SearchItemsController extends MVCController<OnlineElectronicsStore>
         return getModel().getItems().get(0);
     }
     
-    public void Search (){
+    public final List<Item> getItems(){
+        return getModel().getItems();
+    }
+    
+    public final List<Item> getSortedItems(String sortBy) {
+        String order = new String();
+        String[] sort = sortBy.split(": ");
+        switch (sort[0]){ // set sortBy
+            case "Name":
+                sortBy = "name";
+                break;
+            case "Price":
+                sortBy = "cost";
+                break;
+            case "Time":
+                sortBy = "id";
+                break;
+            default:
+                return getItems();
+        }
+        if (sort[1].equals("A to Z") || sort[1].equals("Lowest") || sort[1].equals("Oldest")){ // set order
+            order = "ASC";
+        } else {
+            order = "DESC";
+        }
+        return getModel().getSortedItems(sortBy, order);
+    }
+    
+    public final void setCurrentlySelectedItem(String currentlySelectedItem){
+        getModel().setCurrentlySelectedItem(currentlySelectedItem);
+    }
+    
+    public final String getCurrentlySelectedItem(){
+        return getModel().getCurrentlySelectedItem();
+    }
+    
+    // public methods for @FXML --------------------------------------------------------------------------------------------------------->
+    
+    
+     public void Search (){
+    }
+    
+    
+    // @FXML methods --------------------------------------------------------------------------------------------------------------------->
+    
+    // initialize method
+    @FXML private void initialize(){
+        String keyword = getCurrentlySelectedItem();
+        txtsearchKeyword.setText(keyword);
+        cbSortBy.getItems().addAll("Sort By", "Name: A to Z", "Name: Z to A", "Price: Lowest", "Price: Highest", "Time: Newest", "Time: Oldest"); // bind combobox
     }
     
     // Go to search page
@@ -42,7 +95,6 @@ public class SearchItemsController extends MVCController<OnlineElectronicsStore>
 //        }
     }
     
-    public void initData(String keywords){
-        txtsearchKeyword.setText(keywords);
-    }
+    
+    
 }
