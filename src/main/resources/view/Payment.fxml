@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.paint.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
@@ -19,7 +20,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="center" prefHeight="715.0" prefWidth="800.0" spacing="10" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PaymentController">
+<VBox alignment="center" prefHeight="700.0" prefWidth="800.0" spacing="10" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PaymentController">
    <children>
       <MenuBar>
         <menus>
@@ -35,6 +36,7 @@
           </Menu>
         </menus>
       </MenuBar>
+      <Separator prefHeight="5.0" prefWidth="273.0" />
       <Pane prefHeight="110.0" prefWidth="800.0">
          <children>
                
@@ -68,7 +70,7 @@
          <TextField fx:id="cardNumber" prefHeight="40" prefWidth="160" promptText="XXXX-XXXX-XXXX-XXXX" />
          <TextField fx:id="exp" prefHeight="40" prefWidth="160" promptText="MM/YY" />
          <TextField fx:id="cvc" prefHeight="40" prefWidth="160" promptText="CVC" />
-         <Button alignment="CENTER" contentDisplay="CENTER" opacity="0.65" prefHeight="54.0" prefWidth="118.0" text="PAY">
+         <Button fx:id="Pay" alignment="CENTER" contentDisplay="CENTER" onAction="#handleButtonEvent" opacity="0.65" prefHeight="54.0" prefWidth="118.0" text="PAY">
          <font>
             <Font name="Apple SD GothicNeo ExtraBold" size="16.0" />
          </font>
@@ -89,7 +91,7 @@
             <Pane layoutX="10.0" layoutY="91.0" prefHeight="17.0" prefWidth="807.0" />
             <TextField fx:id="cardName1" layoutX="23.0" layoutY="113.0" prefHeight="33.0" prefWidth="300.0" promptText="Apple ID" />
             <TextField fx:id="cardName2" layoutX="23.0" layoutY="157.0" prefHeight="33.0" prefWidth="300.0" promptText="Password" />
-            <Button alignment="CENTER" layoutX="426.0" layoutY="116.0" mnemonicParsing="false" opacity="0.66" prefHeight="54.0" prefWidth="256.0" text="SIGN IN WITH YOUR APPLE ID">
+            <Button fx:id="ApplePay" alignment="CENTER" layoutX="426.0" layoutY="116.0" mnemonicParsing="false" opacity="0.66" prefHeight="54.0" prefWidth="256.0" text="SIGN IN WITH YOUR APPLE ID">
                <font>
                   <Font name="Apple SD GothicNeo ExtraBold" size="16.0" />
                </font>
