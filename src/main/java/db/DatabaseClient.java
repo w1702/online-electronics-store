@@ -122,7 +122,7 @@ public class DatabaseClient {
      * Get the app data as a JsonObject
      * @return the JsonObject
      */
-    private JsonObject getAppData(){
+    public JsonObject getAppData(){
         return JsonParser.parseString(appData.toJson()).getAsJsonObject();
     }
 }
