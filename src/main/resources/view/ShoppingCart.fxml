@@ -45,6 +45,9 @@
                   <PropertyValueFactory property="amount" />
                </cellValueFactory>
             </TableColumn>
+            <TableColumn text="Action">
+              
+            </TableColumn>
            </columns>
        </TableView>
       <Pane prefHeight="100.0" prefWidth="200.0">

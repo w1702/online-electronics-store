@@ -1,7 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,10 +32,18 @@ public class ViewDetailsController extends MVCController<OnlineElectronicsStore>
     @FXML
     private Label ID;
     
+    @FXML
+    private Label cost;
+    
+    
     
 
     @FXML
     private Button AddToCart;
+    
+    
+    @FXML
+    private Button Return;
     
     
     @FXML
@@ -50,20 +60,39 @@ public final List<Item> getItems(){
     public final OnlineElectronicsStore getOnlineElectronicsStore(){
         return getModel();
     }
-    void initialize() {
-    	
-    }
     
-    void initData(Item item) {
+    public void initialize(URL url, ResourceBundle rb) {
+      
+    }
+
+    
+  
+    
+    public void initData(Item item) {
 
       ID.setText(item.getID());
       name.setText(item.getName());
       description.setText(item.getDescription());
     }
 
+    
+  
+    
+    
+    
+    
     @FXML
     public void handleAddToCart(ActionEvent event) throws IOException {
         UILoader.render(new Stage(), getModel(), "/view/ShoppingCart.fxml", "Shopping Cart");
     }
+    
+    
+    @FXML
+    public void handleReturn(ActionEvent event) throws IOException {
+        UILoader.render(new Stage(), getModel(), "/view/ViewAllItems.fxml", "Title");
+    }
+
+    
+    
 
 }

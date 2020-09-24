@@ -181,12 +181,12 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
     // Go to view items details page
     @FXML private void handleViewDetails() throws Exception {
     	
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewDetailsController.java"));
-    ViewDetailsController controller = loader.getController();
-     controller.initData();
+   // FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewDetailsController.java"));
+  //  Parent root = (Parent)loader.load();
+  //  ViewDetailsController controller = loader.getController();
+   // controller.initData(hiddenfield.getText());
       
-      
-      
+
       UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/ViewDetails.fxml", "View Details");
       
     }
