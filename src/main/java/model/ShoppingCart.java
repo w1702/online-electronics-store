@@ -36,13 +36,17 @@ public class ShoppingCart {
     }
 
     public double getTotalCost(){
+        if(promoCodeUsed) {
+            return getTotalCostBeforeDiscounts() * (1 - onlineElectronicsStore.getDiscountValue());
+        }
+        return getTotalCostBeforeDiscounts();
+    }
+
+    public double getTotalCostBeforeDiscounts(){
         double totalCost = 0;
         for (String itemId : itemQuantity.keySet()) {
             Item item = onlineElectronicsStore.getItemById(itemId);
             totalCost += item.getCost() * itemQuantity.get(itemId);
-        }
-        if(promoCodeUsed) {
-            totalCost = totalCost * (1 - onlineElectronicsStore.getDiscountValue());
         }
         return totalCost;
     }
