@@ -11,52 +11,52 @@
 <?import javafx.scene.text.Text?>
 
 <VBox alignment="center" prefHeight="500.0" prefWidth="800.0" spacing="10" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShoppingCartController">
-   <children>
+    <children>
         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="113.0" prefWidth="800.0" styleClass="h1" text="Shopping Cart" textAlignment="CENTER" textFill="#464242">
-         <font>
-            <Font name="Apple SD Gothic Neo Bold" size="36.0" />
-         </font>
-      </Label>
-       <TableView fx:id="shoppingCartTableView" items="${controller.shoppingCart.itemsAsList}" prefHeight="400.0">
-           
-           <columns>
-               <TableColumn text="ID">
-                   <cellValueFactory>
-                  <PropertyValueFactory property="id" />
-               </cellValueFactory>
-               </TableColumn>
-               <TableColumn text="Name">
-                   <cellValueFactory>
-                  <PropertyValueFactory property="name" />
-               </cellValueFactory>
-               </TableColumn>
-               <TableColumn text="Cost">
-                   <cellValueFactory>
-                  <PropertyValueFactory property="cost" />
-               </cellValueFactory>
-               </TableColumn>
-               <TableColumn text="Description">
-                   <cellValueFactory>
-                  <PropertyValueFactory property="description" />
-               </cellValueFactory>
-               </TableColumn>
-            <TableColumn text="Amount">
-               <cellValueFactory>
-                  <PropertyValueFactory property="amount" />
-               </cellValueFactory>
-            </TableColumn>
-            <TableColumn text="Action">
-              
-            </TableColumn>
-           </columns>
-       </TableView>
-      <Pane prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Button fx:id="Reset" layoutX="358.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleReset" prefHeight="27.0" prefWidth="118.0" text="Reset" />
-            <Button fx:id="Checkout" layoutX="550.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleCheckout" prefHeight="27.0" prefWidth="108.0" text="Checkout" />
-            <Button fx:id="Back" layoutX="131.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="27.0" prefWidth="152.0" text="Continue Shopping" />
-         </children>
-      </Pane>
-      
-   </children>
+            <font>
+                <Font name="Apple SD Gothic Neo Bold" size="36.0" />
+            </font>
+        </Label>
+        <TableView fx:id="shoppingCartTableView" items="${controller.shoppingCart.itemsAsList}" prefHeight="400.0">
+
+            <columns>
+                <TableColumn text="ID">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="id" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Name">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="name" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Cost">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="cost" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Description">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="description" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Amount">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="amount" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Action">
+
+                </TableColumn>
+            </columns>
+        </TableView>
+        <Pane prefHeight="100.0" prefWidth="200.0">
+            <children>
+                <Button fx:id="Reset" layoutX="358.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleReset" prefHeight="27.0" prefWidth="118.0" text="Reset" />
+                <Button fx:id="Checkout" layoutX="550.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleCheckout" prefHeight="27.0" prefWidth="108.0" text="Checkout" />
+                <Button fx:id="Back" layoutX="131.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="27.0" prefWidth="152.0" text="Continue Shopping" />
+            </children>
+        </Pane>
+
+    </children>
 </VBox>

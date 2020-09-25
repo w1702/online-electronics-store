@@ -17,7 +17,7 @@ import javafx.scene.control.TableView;
 
 public class ShoppingCartController extends MVCController<OnlineElectronicsStore> {
 
-	
+
     @FXML
     private Button Checkout;
 
@@ -29,7 +29,7 @@ public class ShoppingCartController extends MVCController<OnlineElectronicsStore
 
     @FXML
     private Button Reset;
-    
+
 
 
 
@@ -40,20 +40,20 @@ public class ShoppingCartController extends MVCController<OnlineElectronicsStore
 
     @FXML
     void handleCheckout() throws IOException {
-    	
-    UILoader.render(new Stage(), getModel(), "/view/Checkout.fxml", "Checkout");
-    
-    
-        }
+
+        UILoader.render(new Stage(), getModel(), "/view/Checkout.fxml", "Checkout");
 
 
-  
+    }
+
+
+
 
     @FXML
     void handleBack(ActionEvent event) throws IOException {
-    	
-    	UILoader.render(new Stage(), getModel(), "/view/ViewAllItems.fxml", "Title");
-    	
+
+        UILoader.render(new Stage(), getModel(), "/view/ViewAllItems.fxml", "Title");
+
 
     }
 
@@ -62,9 +62,9 @@ public class ShoppingCartController extends MVCController<OnlineElectronicsStore
 
     public final ShoppingCart getShoppingCart(){
         return getModel().getLoggedInUser().getShoppingCart();
-    
-    
-}
+
+
+    }
 }
 
 
