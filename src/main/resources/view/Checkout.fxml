@@ -2,29 +2,45 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="controller.CheckoutController"
       alignment="center" spacing="10"
       styleClass="root"
       prefWidth="800.0"
 >
-<HBox>
-    <Label styleClass="h1" text="Checkout"/>
-</HBox>
-<TableView fx:id="checkoutTableView" items="${controller.shoppingCart.items}" prefHeight="200">
-    <placeholder>
-        <Label text="No results found."/>
-    </placeholder>
-    <columns>
-        <TableColumn text="Name">
-            <cellValueFactory><PropertyValueFactory property="name"/></cellValueFactory>
-        </TableColumn>
-        <TableColumn text="Cost">
-            <cellValueFactory><PropertyValueFactory property="cost"/></cellValueFactory>
-        </TableColumn>
-        <TableColumn text="Description">
-            <cellValueFactory><PropertyValueFactory property="description"/></cellValueFactory>
-        </TableColumn>
-    </columns>
-</TableView>
+    <HBox>
+        <Label styleClass="h1" text="Checkout"/>
+    </HBox>
+    <TableView fx:id="checkoutTableView" items="${controller.shoppingCart.itemsAsList}" prefHeight="200">
+        <placeholder>
+            <Label text="No results found."/>
+        </placeholder>
+        <columns>
+            <TableColumn text="ID">
+                <cellValueFactory><PropertyValueFactory property="id"/></cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Name">
+                <cellValueFactory><PropertyValueFactory property="name"/></cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Cost">
+                <cellValueFactory><PropertyValueFactory property="cost"/></cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Description">
+                <cellValueFactory><PropertyValueFactory property="description"/></cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+    <HBox alignment="center" spacing="10">
+        <Text text="Promo code " />
+        <TextField fx:id="promoCodeTextField" />
+        <Button onAction="#handleUsePromoCode" fx:id="usePromoCodeButton" text="Use Promo Code" />
+    </HBox>
+    <VBox alignment="center">
+        <Text fx:id="discountValueText"/>
+        <Text fx:id="totalCostText"/>
+    </VBox>
+    <HBox alignment="center">
+        <Button onAction="#handleProceedWithCheckout" fx:id="proceedWithCheckoutButton" text="Proceed with checkout" />
+    </HBox>
 </VBox>
