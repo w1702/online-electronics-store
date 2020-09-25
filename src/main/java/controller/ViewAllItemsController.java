@@ -119,10 +119,39 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
         return getModel().getSortedItems(sortBy, order);
     }
     
-    public final void setCurrentlySelectedItem(String currentlySelectedItem){
-        getModel().setCurrentlySelectedItem(currentlySelectedItem);
+    
+    // @FXML methods --------------------------------------------------------------------------------------------------------------------->
+    
+    // initialize method for view all items
+    @FXML private void initialize(){
+        getData(0); // get first 6 items
+        btnPrevious.setDisable(true);
+        cbSortBy.getItems().addAll("Sort By", "Name: A to Z", "Name: Z to A", "Price: Lowest", "Price: Highest", "Time: Newest", "Time: Oldest"); // bind combobox
     }
     
+    @FXML private void cbSortByOnSelectedIndexChanged(ActionEvent event) throws Exception {
+        hiddenfield.setText("0"); // reset hfNumber
+        String sortBy = cbSortBy.getSelectionModel().getSelectedItem().toString();
+        if (sortBy != "Sort By"){
+            getSortedData(sortBy, 0); // get sorted order
+        } else {
+            getData(0); // get original order
+        }
+    }
+    
+    // Go to view items details page
+    @FXML private void handleViewDetails() throws Exception {
+
+   // FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewDetailsController.java"));
+  //  Parent root = (Parent)loader.load();
+  //  ViewDetailsController controller = loader.getController();
+   // controller.initData(hiddenfield.getText());
+
+
+      UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/ViewDetails.fxml", "View Details");
+
+    }
+
     // public methods for @FXML --------------------------------------------------------------------------------------------------------->
     
     public void getData(int i){
@@ -277,21 +306,14 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
             btnProduct6.setVisible(true);
         }
     }
-    
+
     // @FXML methods --------------------------------------------------------------------------------------------------------------------->
-    
-    // initialize method for view all items
-    @FXML private void initialize(){
-        getData(0); // get first 6 items
-        btnPrevious.setDisable(true);
-        cbSortBy.getItems().addAll("Sort By", "Name: A to Z", "Name: Z to A", "Price: Lowest", "Price: Highest", "Time: Newest", "Time: Oldest"); // bind combobox
-    }
-    
-     // Load next 6 items 
+
+     // Load next 6 items
     @FXML private void loadNextPage(ActionEvent event) throws Exception {
         String hfNumber = hiddenfield.getText();
         int number = Integer.parseInt(hfNumber) + 6;
-        hiddenfield.setText(Integer.toString(number)); 
+        hiddenfield.setText(Integer.toString(number));
         if (!cbSortBy.getSelectionModel().isEmpty()){
             String sortBy = cbSortBy.getSelectionModel().getSelectedItem().toString();
             if (sortBy != "Sort By"){
@@ -306,7 +328,7 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
             btnPrevious.setDisable(false);
         }
     }
-    
+
     // Load previous 6 items
     @FXML private void loadPreviousPage(ActionEvent event) throws Exception {
         String hfNumber = hiddenfield.getText();
@@ -326,31 +348,21 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
              btnPrevious.setDisable(true);
         }
     }
-    
-    @FXML private void cbSortByOnSelectedIndexChanged(ActionEvent event) throws Exception {
-        hiddenfield.setText("0"); // reset hfNumber
-        String sortBy = cbSortBy.getSelectionModel().getSelectedItem().toString();
-        if (sortBy != "Sort By"){
-            getSortedData(sortBy, 0); // get sorted order
-        } else {
-            getData(0); // get original order
-        }
-    }
-    
+
     // Go to search page
     @FXML private void handleSearchItems(ActionEvent event) throws Exception {
         UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/SearchItems.fxml", "Search Items");
     }
-    
+
     @FXML
     public void handleCheckout() throws IOException {
         UILoader.render(new Stage(), getModel(), "/view/Checkout.fxml", "Checkout");
     }
-    
+
     // Go to view items details page
     @FXML private void handleViewDetails(Event event) throws Exception {
         String currentlySelectedItem = null;
-        String sourceString = event.getSource().toString(); 
+        String sourceString = event.getSource().toString();
         sourceString = sourceString.replaceAll(", ", "=");
         String[] source = sourceString.split("=");
         String controlId = source[1].substring(source[1].length() - 1);
@@ -369,17 +381,15 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
                 break;
             case "5":
                 currentlySelectedItem = hfID5.getText();
-                break;  
+                break;
             case "6":
                 currentlySelectedItem = hfID6.getText();
                 break;
             default:
                 break;
         }
-        setCurrentlySelectedItem(currentlySelectedItem); // set item's id to currentlySelectedItem in OnlineElectronicsStore.java
-        
-        // TODO: Change this to ViewItemDetails.fxml ==================================================================================>
-        //UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/ViewItemDetails.fxml", "Title");
+
+        UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/ViewDetails.fxml", "Title");
     }
-    
+
 }
