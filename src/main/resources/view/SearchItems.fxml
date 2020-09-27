@@ -23,7 +23,7 @@
          <TextField fx:id="txtsearchKeyword" layoutX="231.0" layoutY="34.0" prefHeight="25.0" prefWidth="308.0" promptText="Type to search for an item..." />
          <AnchorPane layoutX="25.0" layoutY="77.0" prefHeight="500.0" prefWidth="578.0" style="-fx-background-color: white;">
             <children>
-               <ComboBox fx:id="cbSortBy1" layoutX="413.0" layoutY="49.0" onAction="#cbSortByOnSelectedIndexChanged" prefHeight="25.0" prefWidth="120.0" promptText="Sort By" />
+               <ComboBox fx:id="cbSortBy" layoutX="413.0" layoutY="49.0" onAction="#cbSortByOnSelectedIndexChanged" prefHeight="25.0" prefWidth="120.0" promptText="Sort By" />
                <Label layoutX="28.0" layoutY="14.0" prefHeight="25.0" prefWidth="88.0" styleClass="h1" text="Keywords">
                   <font>
                      <Font size="14.0" />

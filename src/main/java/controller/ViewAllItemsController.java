@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.util.Base64;
 import java.util.List;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -66,11 +67,13 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
     
     @FXML private Button btnPrevious;
     @FXML private Button btnNext;
+    @FXML private Button btnProduct1;
     @FXML private Button btnProduct2;
     @FXML private Button btnProduct3;
     @FXML private Button btnProduct4;
     @FXML private Button btnProduct5;
     @FXML private Button btnProduct6;
+    @FXML private SplitPane spProduct1;
     @FXML private SplitPane spProduct2;
     @FXML private SplitPane spProduct3;
     @FXML private SplitPane spProduct4;
@@ -123,49 +126,7 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
     @FXML private void initialize(){
         getData(0); // get first 6 items
         btnPrevious.setDisable(true);
-        
-        
         cbSortBy.getItems().addAll("Sort By", "Name: A to Z", "Name: Z to A", "Price: Lowest", "Price: Highest", "Time: Newest", "Time: Oldest"); // bind combobox
-    }
-    
-     // Load next 6 items 
-    @FXML private void loadNextPage(ActionEvent event) throws Exception {
-        String hfNumber = hiddenfield.getText();
-        int number = Integer.parseInt(hfNumber) + 6;
-        hiddenfield.setText(Integer.toString(number)); 
-        if (!cbSortBy.getSelectionModel().isEmpty()){
-            String sortBy = cbSortBy.getSelectionModel().getSelectedItem().toString();
-            if (sortBy != "Sort By"){
-                getSortedData(sortBy, number); // get sorted order
-            } else {
-                getData(number); // get original order
-            }
-        } else {
-            getData(number); // get original order
-        }
-        if (number > 0) {
-            btnPrevious.setDisable(false);
-        }
-    }
-    
-    // Load previous 6 items
-    @FXML private void loadPreviousPage(ActionEvent event) throws Exception {
-        String hfNumber = hiddenfield.getText();
-        int number = Integer.parseInt(hfNumber) - 6;
-        hiddenfield.setText(Integer.toString(number));
-        if (!cbSortBy.getSelectionModel().isEmpty()){
-            String sortBy = cbSortBy.getSelectionModel().getSelectedItem().toString();
-            if (sortBy != "Sort By"){
-                getSortedData(sortBy, number); // get sorted order
-            } else {
-                getData(number); // get original order
-            }
-        } else {
-            getData(number); // get original order
-        }
-        if (number == 0){
-             btnPrevious.setDisable(true);
-        }
     }
     
     @FXML private void cbSortByOnSelectedIndexChanged(ActionEvent event) throws Exception {
@@ -178,21 +139,19 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
         }
     }
     
-     // Go to view items details page
+    // Go to view items details page
     @FXML private void handleViewDetails() throws Exception {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("SearchItemsController.java"));
-//        SearchItemsController controller1 = new SearchItemsController();
-//        SearchItemsController controller = loader.getController();
-//        controller1.initData(hiddenfield.getText());
-//        
-//        UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/SearchItems.fxml", "Search Items");
+
+   // FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewDetailsController.java"));
+  //  Parent root = (Parent)loader.load();
+  //  ViewDetailsController controller = loader.getController();
+   // controller.initData(hiddenfield.getText());
+
+
+      UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/ViewDetails.fxml", "View Details");
+
     }
-    
-    // Go to search page
-    @FXML private void handleSearchItems(ActionEvent event) throws Exception {
-        UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/SearchItems.fxml", "Search Items");
-    }
-    
+
     // public methods for @FXML --------------------------------------------------------------------------------------------------------->
     
     public void getData(int i){
@@ -316,6 +275,11 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
     }
     
     public void displayProductBox(){
+        if (lblName1.getText() == ""){
+            btnProduct1.setVisible(false);
+        } else {
+            btnProduct1.setVisible(true);
+        }
         if (lblName2.getText() == ""){
             btnProduct2.setVisible(false);
         } else {
@@ -343,8 +307,89 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
         }
     }
 
+    // @FXML methods --------------------------------------------------------------------------------------------------------------------->
+
+     // Load next 6 items
+    @FXML private void loadNextPage(ActionEvent event) throws Exception {
+        String hfNumber = hiddenfield.getText();
+        int number = Integer.parseInt(hfNumber) + 6;
+        hiddenfield.setText(Integer.toString(number));
+        if (!cbSortBy.getSelectionModel().isEmpty()){
+            String sortBy = cbSortBy.getSelectionModel().getSelectedItem().toString();
+            if (sortBy != "Sort By"){
+                getSortedData(sortBy, number); // get sorted order
+            } else {
+                getData(number); // get original order
+            }
+        } else {
+            getData(number); // get original order
+        }
+        if (number > 0) {
+            btnPrevious.setDisable(false);
+        }
+    }
+
+    // Load previous 6 items
+    @FXML private void loadPreviousPage(ActionEvent event) throws Exception {
+        String hfNumber = hiddenfield.getText();
+        int number = Integer.parseInt(hfNumber) - 6;
+        hiddenfield.setText(Integer.toString(number));
+        if (!cbSortBy.getSelectionModel().isEmpty()){
+            String sortBy = cbSortBy.getSelectionModel().getSelectedItem().toString();
+            if (sortBy != "Sort By"){
+                getSortedData(sortBy, number); // get sorted order
+            } else {
+                getData(number); // get original order
+            }
+        } else {
+            getData(number); // get original order
+        }
+        if (number == 0){
+             btnPrevious.setDisable(true);
+        }
+    }
+
+    // Go to search page
+    @FXML private void handleSearchItems(ActionEvent event) throws Exception {
+        UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/SearchItems.fxml", "Search Items");
+    }
+
     @FXML
     public void handleCheckout() throws IOException {
         UILoader.render(new Stage(), getModel(), "/view/Checkout.fxml", "Checkout");
     }
+
+    // Go to view items details page
+    @FXML private void handleViewDetails(Event event) throws Exception {
+        String currentlySelectedItem = null;
+        String sourceString = event.getSource().toString();
+        sourceString = sourceString.replaceAll(", ", "=");
+        String[] source = sourceString.split("=");
+        String controlId = source[1].substring(source[1].length() - 1);
+        switch (controlId){
+            case "1":
+                currentlySelectedItem = hfID1.getText();
+                break;
+            case "2":
+                currentlySelectedItem = hfID2.getText();
+                break;
+            case "3":
+                currentlySelectedItem = hfID3.getText();
+                break;
+            case "4":
+                currentlySelectedItem = hfID4.getText();
+                break;
+            case "5":
+                currentlySelectedItem = hfID5.getText();
+                break;
+            case "6":
+                currentlySelectedItem = hfID6.getText();
+                break;
+            default:
+                break;
+        }
+
+        UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/ViewDetails.fxml", "Title");
+    }
+
 }

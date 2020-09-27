@@ -6,6 +6,8 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Base64;
 import java.util.List;
+
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 
 public class Item {
@@ -15,6 +17,9 @@ public class Item {
     private double cost;
     private String description;
     private String image;
+   // private Button button;
+    
+    
 
     public Item(ObservableList<Review> reviews, String id, String name, double cost, String description, String image){
         this.reviews = reviews;
@@ -23,6 +28,8 @@ public class Item {
         this.cost = cost;
         this.description = description;
         this.image = image;
+       // this.button = button;
+       // this.button.setText("Delete Item");
     }
 
     public String getId() {
@@ -61,5 +68,15 @@ public class Item {
         Image image = new Image(stream);
         return image;
     }
+    
+   // public void setButton(Button button) {
+    	
+  //this.button = button;
+  // }
+    
+   //public Button getButton() {
+    	
+  //return button;
+  //}
 
 }
