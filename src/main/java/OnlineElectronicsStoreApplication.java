@@ -11,7 +11,7 @@ public class OnlineElectronicsStoreApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // todo: WHEN DEVELOPING - change fxml file to the one you are working on
+        // todo: WHEN DEVELOPING - change fxml file to the one you are working on, but change it back when finished developing
         UILoader.render(primaryStage, new OnlineElectronicsStore(new DatabaseClient()), "/view/ViewAllItems.fxml", "Title");
     }
 }
