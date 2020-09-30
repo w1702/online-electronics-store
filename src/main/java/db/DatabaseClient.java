@@ -84,6 +84,10 @@ public class DatabaseClient {
 
             User user = new User(
                     userJsonElement.getAsJsonObject().get("id").getAsJsonObject().get("$oid").getAsString(),
+                    userJsonElement.getAsJsonObject().get("firstName").getAsString(),
+                    userJsonElement.getAsJsonObject().get("lastName").getAsString(),
+                    userJsonElement.getAsJsonObject().get("email").getAsString(),
+                    userJsonElement.getAsJsonObject().get("password").getAsString(),
                     shoppingCart
             );
             users.add(user);

@@ -27,7 +27,7 @@
             <font>
                 <Font name="Gill Sans MT" size="14.0" />
             </font></Label>
-        <TextField fx:id="email" text="" />
+        <TextField fx:id="emailTextField" text="" />
     </HBox>
     <HBox alignment="CENTER">
         <Label alignment="CENTER" styleClass="h2" text="Password">
@@ -37,14 +37,14 @@
             <font>
                 <Font name="Gill Sans MT" size="14.0" />
             </font></Label>
-        <PasswordField fx:id="passWord" promptText="Password" />
+        <PasswordField fx:id="passwordField" promptText="Password" />
     </HBox>
     <HBox alignment="CENTER">
-        <Button fx:id="login" alignment="CENTER" onAction="#submitButtonClick" text="Login">
+        <Button alignment="CENTER" onAction="#submitButtonClick" text="Login">
             <HBox.margin>
                 <Insets />
             </HBox.margin></Button>
-        <Button fx:id="reset" mnemonicParsing="false" onAction="#resetFields" text="Reset">
+        <Button mnemonicParsing="false" onAction="#resetFields" text="Reset">
             <HBox.margin>
                 <Insets left="10.0" />
             </HBox.margin></Button>
