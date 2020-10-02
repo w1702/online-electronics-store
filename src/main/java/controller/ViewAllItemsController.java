@@ -356,7 +356,7 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
 
     @FXML
     public void handleCheckout() throws IOException {
-        UILoader.render(new Stage(), getModel(), "/view/Checkout.fxml", "Checkout");
+        UILoader.render(new Stage(), getModel(), "/view/Checkout.fxml", "Shopping Cart");
     }
 
     // Go to view items details page
@@ -390,7 +390,7 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
         }
 
         getModel().setCurrentlySelectedItem(currentlySelectedItem);
-        UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/ViewDetails.fxml", "Title");
+        UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/ViewDetails.fxml", "View Item Details");
     }
 
 }
