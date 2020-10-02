@@ -13,7 +13,6 @@ import java.util.List;
 
 public class OnlineElectronicsStore {
     private DatabaseClient databaseClient;
-    private Admin admin;
     private ObservableList<Item> items;
     private ObservableList<User> users;
     private User loggedInUser;

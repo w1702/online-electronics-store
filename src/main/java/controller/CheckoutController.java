@@ -26,7 +26,7 @@ public class CheckoutController extends MVCController<OnlineElectronicsStore> {
     private Text discountValueText;
 
     @FXML
-    private Text subTotalCostText;
+    private Text checkoutStatusText;
 
     @FXML private void initialize(){
         setTotalCostText();
@@ -49,8 +49,18 @@ public class CheckoutController extends MVCController<OnlineElectronicsStore> {
     }
 
     @FXML
+    private void handleRemoveItem(){
+        // todo: Yifan's part
+    }
+
+    @FXML
     private void handleProceedWithCheckout() throws IOException {
-        UILoader.render(new Stage(), getModel(), "/view/Payment.fxml", "Payment");
+        if(getShoppingCart().getItemQuantity().isEmpty()) {
+            checkoutStatusText.setText("Cannot checkout with no items in shopping cart");
+        }
+        else{
+            UILoader.render(new Stage(), getModel(), "/view/Payment.fxml", "Payment");
+        }
     }
 
     private void setTotalCostText(){

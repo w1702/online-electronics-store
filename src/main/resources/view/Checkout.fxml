@@ -31,6 +31,9 @@
             </TableColumn>
         </columns>
     </TableView>
+    <HBox alignment="center">
+        <Button onAction="#handleRemoveItem" text="Remove item" />
+    </HBox>
     <HBox alignment="center" spacing="10">
         <Text text="Promo code " />
         <TextField fx:id="promoCodeTextField" />
@@ -43,4 +46,7 @@
     <HBox alignment="center">
         <Button onAction="#handleProceedWithCheckout" fx:id="proceedWithCheckoutButton" text="Proceed with checkout" />
     </HBox>
+    <VBox alignment="center">
+        <Text fx:id="checkoutStatusText"/>
+    </VBox>
 </VBox>

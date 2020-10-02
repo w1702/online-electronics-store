@@ -40,11 +40,15 @@
         <PasswordField fx:id="passwordField" promptText="Password" />
     </HBox>
     <HBox alignment="CENTER">
-        <Button mnemonicParsing="false" onAction="#resetFields" text="Reset">
+        <Button mnemonicParsing="false" onAction="#handleReset" text="Reset">
             <HBox.margin>
-                <Insets />
+                <Insets left="10.0" />
             </HBox.margin></Button>
-        <Button alignment="CENTER" onAction="#submitButtonClick" text="Login">
+        <Button onAction="#handleSignup" text="Sign-up">
+            <HBox.margin>
+                <Insets left="10.0" />
+            </HBox.margin></Button>
+        <Button onAction="#handleLogin" text="Login">
             <HBox.margin>
                 <Insets left="10.0" />
             </HBox.margin></Button>

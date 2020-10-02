@@ -33,7 +33,7 @@ public class LoginController extends MVCController<OnlineElectronicsStore> {
     private Label message;
 
 
-    public void submitButtonClick() throws IOException {
+    public void handleLogin() throws IOException {
         boolean userLoggedIn = false;
         message.setTextFill(Color.BLUE);
         message.setText("Validating credentials...");
@@ -53,7 +53,11 @@ public class LoginController extends MVCController<OnlineElectronicsStore> {
         }
     }
 
-    public void resetFields(){
+    public void handleSignup(){
+        // todo: Balraj's part
+    }
+
+    public void handleReset(){
         emailTextField.setText("");
         passwordField.setText("");
         message.setText("");
