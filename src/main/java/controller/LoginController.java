@@ -49,7 +49,7 @@ public class LoginController extends MVCController<OnlineElectronicsStore> {
 
         if(!userLoggedIn) {
             message.setTextFill(Color.RED);
-            message.setText("Invalid Id/Password");
+            message.setText("Invalid Email / Password");
         }
     }
 
