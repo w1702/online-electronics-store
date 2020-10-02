@@ -211,7 +211,7 @@
       </children>
    </AnchorPane>
    <HBox alignment="center">
-      <Button text="Checkout" onAction="#handleCheckout"/>
+      <Button text="Shopping Cart" onAction="#handleCheckout"/>
    </HBox>
    <stylesheets>
    </stylesheets>

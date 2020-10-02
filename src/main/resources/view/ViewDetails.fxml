@@ -7,21 +7,20 @@
 <?import javafx.scene.layout.*?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewDetailsController">
-   <children>
-      <Pane prefHeight="300.0" prefWidth="200.0">
-         <children>
-            <Label fx:id="name" layoutX="238.0" layoutY="180.0" prefHeight="17.0" prefWidth="124.0" />
-            <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="200.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="ID" layoutX="238.0" layoutY="206.0" prefHeight="17.0" prefWidth="124.0" />
-            <Label fx:id="cost" layoutX="238.0" layoutY="215.0" prefHeight="17.0" prefWidth="124.0" />
-         </children>
-      </Pane>
-      <Pane prefHeight="200.0" prefWidth="200.0">
-         <children>
+    <children>
+        <VBox>
+            <ImageView fx:id="itemImageView" fitHeight="150.0" fitWidth="200.0" layoutX="200.0" pickOnBounds="true" preserveRatio="true" />
+            <Text fx:id="idText"/>
+            <Text fx:id="nameText"/>
+            <Text fx:id="costText"/>
+            <Text fx:id="descriptionText"/>
+        </VBox>
+        <TableView>
+            <!-- todo: reviews -->
+        </TableView>
+        <HBox>
             <Button fx:id="AddToCart" layoutX="374.0" layoutY="84.0" mnemonicParsing="false" onAction="#handleAddToCart" text="Add To Cart" />
-            <Label fx:id="description" layoutX="283.0" layoutY="35.0" />
-            <Button fx:id="Return" layoutX="152.0" layoutY="84.0" mnemonicParsing="false" onAction="#handleReturn" text="Back" />
-         </children>
-      </Pane>
-   </children>
+            <Text fx:id="addToCartStatusText"/>
+        </HBox>
+    </children>
 </VBox>

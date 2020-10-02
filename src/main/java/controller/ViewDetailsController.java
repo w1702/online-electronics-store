@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.text.Text;
 import model.Item;
 import model.OnlineElectronicsStore;
 import model.ShoppingCart;
@@ -23,76 +24,42 @@ import javafx.stage.Stage;
 public class ViewDetailsController extends MVCController<OnlineElectronicsStore> {
     
     @FXML
-    private ImageView image;
-
-
-    @FXML
-    private Label name;
-    
-    @FXML
-    private Label ID;
-    
-    @FXML
-    private Label cost;
-    
-    
-    
+    private ImageView itemImageView;
 
     @FXML
-    private Button AddToCart;
-    
-    
-    @FXML
-    private Button Return;
-    
-    
-    @FXML
-    private Label description;
+    private Text idText;
 
- public final Item getItem(){
- return getModel().getItems().get(0);
-}
-    
-public final List<Item> getItems(){
-  return getModel().getItems();
- }
+    @FXML
+    private Text nameText;
 
-    public final OnlineElectronicsStore getOnlineElectronicsStore(){
-        return getModel();
+    @FXML
+    private Text costText;
+
+    @FXML
+    private Text descriptionText;
+
+    @FXML
+    private Text addToCartStatusText;
+
+    @FXML private void initialize(){
+        Item item = getCurrentlySelectedItem();
+        itemImageView.setImage(item.getConvertBase64toImage());
+        idText.setText("ID: " + item.getId());
+        nameText.setText("name: " + item.getName());
+        costText.setText("cost: " + item.getCost());
+        descriptionText.setText("description: " + item.getDescription());
     }
     
-    public void initialize(URL url, ResourceBundle rb) {
-      
-    }
-
-    
-  
-    
-    public void initData(Item item) {
-
-      ID.setText(item.getID());
-      name.setText(item.getName());
-      description.setText(item.getDescription());
-    }
-
-    
-  
-    
-    
-    
-    
     @FXML
-    public void handleAddToCart(ActionEvent event) throws IOException {
-        UILoader.render(new Stage(), getModel(), "/view/ShoppingCart.fxml", "Shopping Cart");
-    }
-    
-    
-    @FXML
-    public void handleReturn(ActionEvent event) throws IOException {
-        UILoader.render(new Stage(), getModel(), "/view/ViewAllItems.fxml", "Title");
+    public void handleAddToCart() {
+        getModel()
+                .getLoggedInUser()
+                .getShoppingCart()
+                .addItem(getCurrentlySelectedItem().getId(), 1);
+        addToCartStatusText.setText("Added item to cart");
     }
 
-    
-    
-
+    private Item getCurrentlySelectedItem(){
+        return getModel().getItemById(getModel().getCurrentlySelectedItem());
+    }
 }

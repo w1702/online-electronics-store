@@ -56,10 +56,6 @@ public class Item {
         return image;
     }
 
-    public String getID() {
-        return id;
-    }
-
     public Image getConvertBase64toImage() {
         // Convert Base64 to Image
         String base64Image = image.split(",")[1];

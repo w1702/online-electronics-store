@@ -27,7 +27,6 @@ public class ShoppingCart {
     }
 
     public void addItem(String itemId, Integer quantity){
-        // todo: add to db
         itemQuantity.put(itemId, quantity);
     }
 

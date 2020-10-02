@@ -12,15 +12,14 @@ public class User {
     private ObservableList<Order> orders;
     private ShoppingCart shoppingCart;
 
-    public User(String id, String firstName, String lastName, String email, String password, ShoppingCart shoppingCart){
+    public User(String id, String firstName, String lastName, String email, String password){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.orders = FXCollections.observableArrayList();
-        this.shoppingCart = shoppingCart; // todo: change from dependency injection to just instantiation
-
+        this.shoppingCart = new ShoppingCart(FXCollections.observableHashMap(), false);
     }
 
     public void addOrder(Order order){

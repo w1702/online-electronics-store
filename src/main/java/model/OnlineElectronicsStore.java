@@ -17,7 +17,6 @@ public class OnlineElectronicsStore {
     private ObservableList<Item> items;
     private ObservableList<User> users;
     private User loggedInUser;
-    // todo: change this to read from db
     private String promoCode;
     private double discountValue;
     private String currentlySelectedItem;
@@ -26,8 +25,6 @@ public class OnlineElectronicsStore {
         this.databaseClient = databaseClient;
         this.items = databaseClient.readItemsFromDB();
         this.users = databaseClient.readUsersFromDB();
-        // todo: set the logged in user on login
-        this.loggedInUser = users.get(0); // temporary solution
         this.promoCode = databaseClient.readPromoCodeFromDB();
         this.discountValue = databaseClient.readDiscountValueFromDB();
 
@@ -114,8 +111,8 @@ public class OnlineElectronicsStore {
                         return valA.compareTo(valB); // ascending
                     }
                 } else { // default: sort by ID
-                    String valA = itemA.getID();
-                    String valB = itemB.getID();
+                    String valA = itemA.getId();
+                    String valB = itemB.getId();
                     if (order == "DESC"){
                         return -valA.compareTo(valB); // descending
                     } else {

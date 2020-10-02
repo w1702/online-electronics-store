@@ -66,29 +66,13 @@ public class DatabaseClient {
         ObservableList<User> users = FXCollections.observableArrayList();
         JsonArray usersJsonArray = getAppData()
                 .get("users").getAsJsonArray();
-        // todo: fetch other fields of the user object
         for (JsonElement userJsonElement : usersJsonArray) {
-            // todo: initializing cart items may not be needed in final version
-            // temporary shopping cart code begin
-            ObservableMap<String, Integer> itemQuantity = FXCollections.observableHashMap();
-            JsonArray cartItemsJsonArray = userJsonElement.getAsJsonObject()
-                    .get("shoppingCart").getAsJsonObject()
-                    .get("itemQuantity").getAsJsonArray();
-            for (JsonElement cartItemJsonElement : cartItemsJsonArray) {
-                String itemId = cartItemJsonElement.getAsJsonObject().get("id").getAsJsonObject().get("$oid").getAsString();
-                Integer quantity = cartItemJsonElement.getAsJsonObject().get("quantity").getAsJsonObject().get("$numberLong").getAsInt();
-                itemQuantity.put(itemId, quantity);
-            }
-            ShoppingCart shoppingCart = new ShoppingCart(itemQuantity, false);
-            // temporary shopping cart code end
-
             User user = new User(
                     userJsonElement.getAsJsonObject().get("id").getAsJsonObject().get("$oid").getAsString(),
                     userJsonElement.getAsJsonObject().get("firstName").getAsString(),
                     userJsonElement.getAsJsonObject().get("lastName").getAsString(),
                     userJsonElement.getAsJsonObject().get("email").getAsString(),
-                    userJsonElement.getAsJsonObject().get("password").getAsString(),
-                    shoppingCart
+                    userJsonElement.getAsJsonObject().get("password").getAsString()
             );
             users.add(user);
         }
