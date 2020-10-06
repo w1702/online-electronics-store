@@ -16,6 +16,7 @@
                 <Text fx:id="nameText"/>
                 <Text fx:id="costText"/>
                 <Text fx:id="descriptionText"/>
+                <Text fx:id="quantityInCartText"/>
                 <Button layoutX="374.0" layoutY="84.0" mnemonicParsing="false" onAction="#handleAddToCart" text="Add To Cart" />
                 <Text fx:id="addToCartStatusText"/>
             </VBox>
@@ -41,6 +42,7 @@
             <VBox alignment="CENTER">
                 <TextField fx:id="reviewCommentTextField" />
                 <Button layoutX="374.0" layoutY="84.0" mnemonicParsing="false" onAction="#handleAddReview" text="Add Review" />
+                <Text fx:id="addReviewCommentStatusText"/>
             </VBox>
         </VBox>
     </children>
