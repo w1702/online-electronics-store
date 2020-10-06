@@ -16,9 +16,9 @@ class ShoppingCartTest {
         storeItems.add(product1);
         storeItems.add(product2);
 
-        OnlineElectronicsStore onlineElectronicsStore = new OnlineElectronicsStore(storeItems);
-        onlineElectronicsStore.setDiscountValue(0.1);
-
+        OnlineElectronicsStore onlineElectronicsStore = new OnlineElectronicsStore();
+        onlineElectronicsStore.setItems(storeItems);
+        onlineElectronicsStore.setPromotion(new Promotion(null, 0.1));
         ObservableMap<String, Integer> itemQuantity = FXCollections.observableHashMap();
         itemQuantity.put("product1", 1);
         itemQuantity.put("product2", 1);
@@ -43,8 +43,8 @@ class ShoppingCartTest {
         storeItems.add(product1);
         storeItems.add(product2);
 
-        OnlineElectronicsStore onlineElectronicsStore = new OnlineElectronicsStore(storeItems);
-        onlineElectronicsStore.setDiscountValue(0.1);
+        OnlineElectronicsStore onlineElectronicsStore = new OnlineElectronicsStore();
+        onlineElectronicsStore.setItems(storeItems);
 
         ObservableMap<String, Integer> itemQuantity = FXCollections.observableHashMap();
         itemQuantity.put("product1", 1);

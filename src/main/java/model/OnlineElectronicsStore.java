@@ -30,8 +30,7 @@ public class OnlineElectronicsStore {
     }
 
     // for unit testing
-    public OnlineElectronicsStore(ObservableList<Item> items){
-        this.items = items;
+    public OnlineElectronicsStore(){
     }
 
     public Item getItemById(String itemId){
@@ -48,6 +47,14 @@ public class OnlineElectronicsStore {
             }
         }
         return null;
+    }
+
+    void setItems(ObservableList<Item> items){
+        this.items = items;
+    }
+
+    void setPromotion(Promotion promotion) {
+        this.promotion = promotion;
     }
 
     public ObservableList<Item> getItems() {
@@ -72,10 +79,6 @@ public class OnlineElectronicsStore {
 
     public double getDiscountValue() {
         return promotion.getDiscountValue();
-    }
-
-    void setDiscountValue(double discountValue){
-        this.promotion.setDiscountValue(discountValue);
     }
 
     public DatabaseReadClient getDatabaseClient() {

@@ -1,23 +1,16 @@
 package controller;
 
-import db.DatabaseClient;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
+import model.Item;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import model.Item;
-import model.OnlineElectronicsStore;
-import org.junit.jupiter.api.Assertions;
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
 
 public class ViewAllItemsControllerTest {
     

@@ -21,7 +21,9 @@ class OnlineElectronicsStoreTest {
         items.add(item2);
         items.add(item3);
 
-        Item actualItem = new OnlineElectronicsStore(items).getItemById("2");
+        OnlineElectronicsStore onlineElectronicsStore = new OnlineElectronicsStore();
+        onlineElectronicsStore.setItems(items);
+        Item actualItem = onlineElectronicsStore.getItemById("2");
 
         Assertions.assertEquals(item2, actualItem);
     }
@@ -41,7 +43,9 @@ class OnlineElectronicsStoreTest {
         expectedSortedItems.add(item2);
         expectedSortedItems.add(item1);
 
-        List<Item> actualSortedItems = new OnlineElectronicsStore(items).getSortedItems("cost", "DESC");
+        OnlineElectronicsStore onlineElectronicsStore = new OnlineElectronicsStore();
+        onlineElectronicsStore.setItems(items);
+        List<Item> actualSortedItems = onlineElectronicsStore.getSortedItems("cost", "DESC");
 
         Assertions.assertEquals(expectedSortedItems, actualSortedItems);
     }
@@ -61,7 +65,9 @@ class OnlineElectronicsStoreTest {
         expectedSortedItems.add(item3);
         expectedSortedItems.add(item2);
 
-        List<Item> actualSortedItems = new OnlineElectronicsStore(items).getSortedItems("name", "DESC");
+        OnlineElectronicsStore onlineElectronicsStore = new OnlineElectronicsStore();
+        onlineElectronicsStore.setItems(items);
+        List<Item> actualSortedItems = onlineElectronicsStore.getSortedItems("name", "DESC");
 
         Assertions.assertEquals(expectedSortedItems, actualSortedItems);
     }
@@ -81,7 +87,9 @@ class OnlineElectronicsStoreTest {
         expectedSortedItems.add(item2);
         expectedSortedItems.add(item1);
 
-        List<Item> actualSortedItems = new OnlineElectronicsStore(items).getSortedItems("id", "DESC");
+        OnlineElectronicsStore onlineElectronicsStore = new OnlineElectronicsStore();
+        onlineElectronicsStore.setItems(items);
+        List<Item> actualSortedItems = onlineElectronicsStore.getSortedItems("id", "DESC");
 
         Assertions.assertEquals(expectedSortedItems, actualSortedItems);
     }
