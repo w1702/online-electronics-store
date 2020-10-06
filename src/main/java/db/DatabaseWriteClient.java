@@ -1,5 +1,8 @@
 package db;
 
+/**
+ * This class is responsible for making the write calls to MongoDB
+ */
 public class DatabaseWriteClient {
     public static void writeReviewsToDB(){
 

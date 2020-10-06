@@ -22,7 +22,7 @@ import java.util.List;
 import static db.DatabaseCredentials.*;
 
 /**
- * This class is responsible for making the calls to MongoDB
+ * This class is responsible for making the read calls to MongoDB
  */
 public class DatabaseReadClient {
     private Document appData;
