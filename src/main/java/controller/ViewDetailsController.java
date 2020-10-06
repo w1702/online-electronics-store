@@ -1,5 +1,6 @@
 package controller;
 
+import db.DatabaseWriteClient;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -54,6 +55,7 @@ public class ViewDetailsController extends MVCController<OnlineElectronicsStore>
         getModel()
                 .getItemById(getModel().getCurrentlySelectedItem())
                 .addReview(getModel().getLoggedInUser().getId(), reviewCommentTextField.getText());
+        DatabaseWriteClient.writeReviewsToDB();
     }
 
     public Item getCurrentItem(){

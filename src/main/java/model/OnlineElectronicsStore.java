@@ -1,6 +1,6 @@
 package model;
 
-import db.DatabaseClient;
+import db.DatabaseReadClient;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
@@ -9,14 +9,14 @@ import java.util.Comparator;
 import java.util.List;
 
 public class OnlineElectronicsStore {
-    private DatabaseClient databaseClient;
+    private DatabaseReadClient databaseClient;
     private ObservableList<Item> items;
     private ObservableList<User> users;
     private User loggedInUser;
     private Promotion promotion;
     private String currentlySelectedItem;
 
-    public OnlineElectronicsStore(DatabaseClient databaseClient){
+    public OnlineElectronicsStore(DatabaseReadClient databaseClient){
         this.databaseClient = databaseClient;
         this.items = databaseClient.readItemsFromDB();
         this.users = databaseClient.readUsersFromDB();
@@ -76,6 +76,10 @@ public class OnlineElectronicsStore {
 
     void setDiscountValue(double discountValue){
         this.promotion.setDiscountValue(discountValue);
+    }
+
+    public DatabaseReadClient getDatabaseClient() {
+        return databaseClient;
     }
 
     // Get Sorted Items, can sort by name, cost(Price), id(Created time) in ASC or DESC order

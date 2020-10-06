@@ -1,32 +1,35 @@
 package db;
 
-import com.google.gson.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
-import model.*;
+import model.Item;
+import model.Promotion;
+import model.Review;
+import model.User;
 import org.bson.Document;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static db.DatabaseCredentials.*;
+
 /**
  * This class is responsible for making the calls to MongoDB
  */
-public class DatabaseClient {
-    private static final String URI = "mongodb+srv://asd2020group7ReadWriteUser:DKTxCPtNhbOGxJZl@asd2020group7.jhxog.mongodb.net/asd_assignment?retryWrites=true&w=majority";
-    private static final String DATABASE_NAME = "asd_assignment";
-    private static final String COLLECTION_NAME_ONLINE_ELECTRONICS_STORE = "onlineElectronicsStore";
-
+public class DatabaseReadClient {
     private Document appData;
     /**
      * Constructor, connects to MongoDB and collects all documents from default db and collection
      */
-    public DatabaseClient() {
+    public DatabaseReadClient() {
         MongoClientURI uri = new MongoClientURI(URI);
         MongoClient mongoClient = new MongoClient(uri);
         MongoDatabase database = mongoClient.getDatabase(DATABASE_NAME);
