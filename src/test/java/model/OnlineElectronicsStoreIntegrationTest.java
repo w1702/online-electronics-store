@@ -14,7 +14,6 @@ class OnlineElectronicsStoreIntegrationTest {
         OnlineElectronicsStore onlineElectronicsStore = new OnlineElectronicsStore(databaseClient);
         Assertions.assertNotNull(onlineElectronicsStore.getItems());
         Assertions.assertNotNull(onlineElectronicsStore.getUsers());
-        Assertions.assertNotNull(onlineElectronicsStore.getLoggedInUser());
         Assertions.assertNotNull(onlineElectronicsStore.getPromoCode());
         Assertions.assertNotNull(onlineElectronicsStore.getDiscountValue());
     }

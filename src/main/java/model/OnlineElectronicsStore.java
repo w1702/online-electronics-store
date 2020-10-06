@@ -1,8 +1,5 @@
 package model;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import db.DatabaseClient;
 import javafx.collections.ObservableList;
 
@@ -16,16 +13,14 @@ public class OnlineElectronicsStore {
     private ObservableList<Item> items;
     private ObservableList<User> users;
     private User loggedInUser;
-    private String promoCode;
-    private double discountValue;
+    private Promotion promotion;
     private String currentlySelectedItem;
 
     public OnlineElectronicsStore(DatabaseClient databaseClient){
         this.databaseClient = databaseClient;
         this.items = databaseClient.readItemsFromDB();
         this.users = databaseClient.readUsersFromDB();
-        this.promoCode = databaseClient.readPromoCodeFromDB();
-        this.discountValue = databaseClient.readDiscountValueFromDB();
+        this.promotion = databaseClient.readPromotionFromDB();
 
         // todo: revise this hacky code
         // setting shopping cart property manually
@@ -72,15 +67,15 @@ public class OnlineElectronicsStore {
     }
 
     public String getPromoCode() {
-        return promoCode;
+        return promotion.getPromoCode();
     }
 
     public double getDiscountValue() {
-        return discountValue;
+        return promotion.getDiscountValue();
     }
 
     void setDiscountValue(double discountValue){
-        this.discountValue = discountValue;
+        this.promotion.setDiscountValue(discountValue);
     }
 
     // Get Sorted Items, can sort by name, cost(Price), id(Created time) in ASC or DESC order

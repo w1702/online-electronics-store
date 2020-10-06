@@ -27,7 +27,14 @@ public class ShoppingCart {
     }
 
     public void addItem(String itemId, Integer quantity){
-        itemQuantity.put(itemId, quantity);
+        Integer oldQuantity = itemQuantity.get(itemId);
+        if(oldQuantity != null){
+            Integer newQuantity = oldQuantity + quantity;
+            itemQuantity.put(itemId, newQuantity);
+        }
+        else{
+            itemQuantity.put(itemId, quantity);
+        }
     }
 
     public ObservableMap<String, Integer> getItemQuantity() {

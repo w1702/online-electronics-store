@@ -79,16 +79,14 @@ public class DatabaseClient {
         return users;
     }
 
-    public String readPromoCodeFromDB(){
-        return getAppData()
+    public Promotion readPromotionFromDB(){
+        return new Promotion(getAppData()
                 .get("promotion").getAsJsonObject()
-                .get("promoCode").getAsString();
-}
-
-    public double readDiscountValueFromDB(){
-        return getAppData()
+                .get("promoCode").getAsString(),
+                getAppData()
                 .get("promotion").getAsJsonObject()
-                .get("discountValue").getAsDouble();
+                .get("discountValue").getAsDouble()
+                );
     }
 
     private ObservableList<Review> getReviewsFromItemsJsonElement(JsonElement itemJsonElement){
