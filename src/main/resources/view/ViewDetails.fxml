@@ -16,6 +16,8 @@
                 <Text fx:id="nameText"/>
                 <Text fx:id="costText"/>
                 <Text fx:id="descriptionText"/>
+                <Button layoutX="374.0" layoutY="84.0" mnemonicParsing="false" onAction="#handleAddToCart" text="Add To Cart" />
+                <Text fx:id="addToCartStatusText"/>
             </VBox>
         </HBox>
         <VBox alignment="CENTER">
@@ -36,8 +38,10 @@
                     </TableColumn>
                 </columns>
             </TableView>
-            <Button layoutX="374.0" layoutY="84.0" mnemonicParsing="false" onAction="#handleAddToCart" text="Add To Cart" />
-            <Text fx:id="addToCartStatusText"/>
+            <VBox alignment="CENTER">
+                <TextField fx:id="reviewCommentTextField" />
+                <Button layoutX="374.0" layoutY="84.0" mnemonicParsing="false" onAction="#handleAddReview" text="Add Review" />
+            </VBox>
         </VBox>
     </children>
 </VBox>

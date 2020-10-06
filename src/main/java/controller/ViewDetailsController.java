@@ -28,6 +28,9 @@ public class ViewDetailsController extends MVCController<OnlineElectronicsStore>
     @FXML
     private Text addToCartStatusText;
 
+    @FXML
+    private javafx.scene.control.TextField reviewCommentTextField;
+
     @FXML private void initialize(){ ;
         Item item = getCurrentItem();
         itemImageView.setImage(item.getConvertBase64toImage());
@@ -44,6 +47,13 @@ public class ViewDetailsController extends MVCController<OnlineElectronicsStore>
                 .getShoppingCart()
                 .addItem(getCurrentItem().getId(), 1);
         addToCartStatusText.setText("Added item to cart");
+    }
+
+    @FXML
+    public void handleAddReview(){
+        getModel()
+                .getItemById(getModel().getCurrentlySelectedItem())
+                .addReview(getModel().getLoggedInUser().getId(), reviewCommentTextField.getText());
     }
 
     public Item getCurrentItem(){

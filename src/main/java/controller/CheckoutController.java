@@ -20,9 +20,6 @@ public class CheckoutController extends MVCController<OnlineElectronicsStore> {
     private TextField promoCodeTextField;
 
     @FXML
-    private Button usePromoCodeButton;
-
-    @FXML
     private Text discountValueText;
 
     @FXML

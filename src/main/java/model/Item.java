@@ -1,14 +1,13 @@
 package model;
 
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Base64;
-import java.util.List;
-
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
+import java.util.Date;
+import java.util.UUID;
 
 public class Item {
     private ObservableList<Review> reviews;
@@ -25,6 +24,10 @@ public class Item {
         this.cost = cost;
         this.description = description;
         this.image = image;
+    }
+
+    public void addReview(String userId, String comment){
+        reviews.add(new Review(new UUID(8L, 8L).toString(), new Date().toString(), comment, userId));
     }
 
     public String getId() {
