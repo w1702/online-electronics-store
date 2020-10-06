@@ -43,7 +43,7 @@ public class Item {
         return description;
     }
 
-    public List<Review> getReviews() {
+    public ObservableList<Review> getReviews() {
         return reviews;
     }
 

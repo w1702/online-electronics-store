@@ -1,24 +1,11 @@
 package controller;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import model.Item;
 import model.OnlineElectronicsStore;
-import model.ShoppingCart;
 import utils.MVCController;
-import utils.UILoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.fxml.Initializable;
-
-import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 
 
 public class ViewDetailsController extends MVCController<OnlineElectronicsStore> {
@@ -41,8 +28,8 @@ public class ViewDetailsController extends MVCController<OnlineElectronicsStore>
     @FXML
     private Text addToCartStatusText;
 
-    @FXML private void initialize(){
-        Item item = getCurrentlySelectedItem();
+    @FXML private void initialize(){ ;
+        Item item = getCurrentItem();
         itemImageView.setImage(item.getConvertBase64toImage());
         idText.setText("ID: " + item.getId());
         nameText.setText("name: " + item.getName());
@@ -55,11 +42,11 @@ public class ViewDetailsController extends MVCController<OnlineElectronicsStore>
         getModel()
                 .getLoggedInUser()
                 .getShoppingCart()
-                .addItem(getCurrentlySelectedItem().getId(), 1);
+                .addItem(getCurrentItem().getId(), 1);
         addToCartStatusText.setText("Added item to cart");
     }
 
-    private Item getCurrentlySelectedItem(){
+    public Item getCurrentItem(){
         return getModel().getItemById(getModel().getCurrentlySelectedItem());
     }
 }
