@@ -34,9 +34,7 @@ public class LoginController extends MVCController<OnlineElectronicsStore> {
     @FXML
     private Label message;
 
-//to view login page change UILoader.render in (OnlineElectronicsStoreApplication.java) to Login.fxml
-//the mongo db has stored a email , password stored to check if the logic works
-  //  emial: johnnydepp@gmai.com  password: johnnydepp (both id, password are case sensitive)
+
     public void submitButtonClick(){
 
         message.setTextFill(Color.BLUE);
@@ -72,7 +70,7 @@ public class LoginController extends MVCController<OnlineElectronicsStore> {
             stage.close();
 
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/signup.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/ViewAllItems.fxml"));
                 Parent root1 = (Parent) fxmlLoader.load();
                 Stage stage1 = new Stage();
                 stage1.initModality(Modality.APPLICATION_MODAL);

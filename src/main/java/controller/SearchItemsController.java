@@ -23,10 +23,6 @@ public class SearchItemsController extends MVCController<OnlineElectronicsStore>
         return getModel();
     }
 
-    public final Item getItem(){
-        // todo: this gets the first user as of right now, should be getting the currently logged in user
-        return getModel().getItems().get(0);
-    }
     
     public final List<Item> getItems(){
         return getModel().getItems();
@@ -55,10 +51,7 @@ public class SearchItemsController extends MVCController<OnlineElectronicsStore>
         }
         return getModel().getSortedItems(sortBy, order);
     }
-    
-    public final void setCurrentlySelectedItem(String currentlySelectedItem){
-        getModel().setCurrentlySelectedItem(currentlySelectedItem);
-    }
+
     
     public final String getCurrentlySelectedItem(){
         return getModel().getCurrentlySelectedItem();

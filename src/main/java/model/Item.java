@@ -1,14 +1,13 @@
 package model;
 
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Base64;
-import java.util.List;
-
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
+import java.util.Date;
+import java.util.UUID;
 
 public class Item {
     private ObservableList<Review> reviews;
@@ -17,9 +16,6 @@ public class Item {
     private double cost;
     private String description;
     private String image;
-   // private Button button;
-    
-    
 
     public Item(ObservableList<Review> reviews, String id, String name, double cost, String description, String image){
         this.reviews = reviews;
@@ -28,8 +24,10 @@ public class Item {
         this.cost = cost;
         this.description = description;
         this.image = image;
-       // this.button = button;
-       // this.button.setText("Delete Item");
+    }
+
+    public void addReview(String userId, String comment){
+        reviews.add(new Review(new UUID(8L, 8L).toString(), new Date().toString(), comment, userId));
     }
 
     public String getId() {
@@ -48,16 +46,12 @@ public class Item {
         return description;
     }
 
-    public List<Review> getReviews() {
+    public ObservableList<Review> getReviews() {
         return reviews;
     }
 
     public String getImage() {
         return image;
-    }
-
-    public String getID() {
-        return id;
     }
 
     public Image getConvertBase64toImage() {
@@ -68,15 +62,5 @@ public class Item {
         Image image = new Image(stream);
         return image;
     }
-    
-   // public void setButton(Button button) {
-    	
-  //this.button = button;
-  // }
-    
-   //public Button getButton() {
-    	
-  //return button;
-  //}
 
 }

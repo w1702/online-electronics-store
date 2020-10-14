@@ -1,32 +1,35 @@
 package db;
 
-import com.google.gson.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
-import model.*;
+import model.Item;
+import model.Promotion;
+import model.Review;
+import model.User;
 import org.bson.Document;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * This class is responsible for making the calls to MongoDB
- */
-public class DatabaseClient {
-    private static final String URI = "mongodb+srv://asd2020group7ReadWriteUser:DKTxCPtNhbOGxJZl@asd2020group7.jhxog.mongodb.net/asd_assignment?retryWrites=true&w=majority";
-    private static final String DATABASE_NAME = "asd_assignment";
-    private static final String COLLECTION_NAME_ONLINE_ELECTRONICS_STORE = "onlineElectronicsStore";
+import static db.DatabaseCredentials.*;
 
+/**
+ * This class is responsible for making the read calls to MongoDB
+ */
+public class DatabaseReadClient {
     private Document appData;
     /**
      * Constructor, connects to MongoDB and collects all documents from default db and collection
      */
-    public DatabaseClient() {
+    public DatabaseReadClient() {
         MongoClientURI uri = new MongoClientURI(URI);
         MongoClient mongoClient = new MongoClient(uri);
         MongoDatabase database = mongoClient.getDatabase(DATABASE_NAME);
@@ -66,41 +69,27 @@ public class DatabaseClient {
         ObservableList<User> users = FXCollections.observableArrayList();
         JsonArray usersJsonArray = getAppData()
                 .get("users").getAsJsonArray();
-        // todo: fetch other fields of the user object
         for (JsonElement userJsonElement : usersJsonArray) {
-            // todo: initializing cart items may not be needed in final version
-            // temporary shopping cart code begin
-            ObservableMap<String, Integer> itemQuantity = FXCollections.observableHashMap();
-            JsonArray cartItemsJsonArray = userJsonElement.getAsJsonObject()
-                    .get("shoppingCart").getAsJsonObject()
-                    .get("itemQuantity").getAsJsonArray();
-            for (JsonElement cartItemJsonElement : cartItemsJsonArray) {
-                String itemId = cartItemJsonElement.getAsJsonObject().get("id").getAsJsonObject().get("$oid").getAsString();
-                Integer quantity = cartItemJsonElement.getAsJsonObject().get("quantity").getAsJsonObject().get("$numberLong").getAsInt();
-                itemQuantity.put(itemId, quantity);
-            }
-            ShoppingCart shoppingCart = new ShoppingCart(itemQuantity, false);
-            // temporary shopping cart code end
-
             User user = new User(
                     userJsonElement.getAsJsonObject().get("id").getAsJsonObject().get("$oid").getAsString(),
-                    shoppingCart
+                    userJsonElement.getAsJsonObject().get("firstName").getAsString(),
+                    userJsonElement.getAsJsonObject().get("lastName").getAsString(),
+                    userJsonElement.getAsJsonObject().get("email").getAsString(),
+                    userJsonElement.getAsJsonObject().get("password").getAsString()
             );
             users.add(user);
         }
         return users;
     }
 
-    public String readPromoCodeFromDB(){
-        return getAppData()
+    public Promotion readPromotionFromDB(){
+        return new Promotion(getAppData()
                 .get("promotion").getAsJsonObject()
-                .get("promoCode").getAsString();
-}
-
-    public double readDiscountValueFromDB(){
-        return getAppData()
+                .get("promoCode").getAsString(),
+                getAppData()
                 .get("promotion").getAsJsonObject()
-                .get("discountValue").getAsDouble();
+                .get("discountValue").getAsDouble()
+                );
     }
 
     private ObservableList<Review> getReviewsFromItemsJsonElement(JsonElement itemJsonElement){

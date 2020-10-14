@@ -1,9 +1,6 @@
 package model;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import db.DatabaseClient;
+import db.DatabaseReadClient;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
@@ -12,24 +9,18 @@ import java.util.Comparator;
 import java.util.List;
 
 public class OnlineElectronicsStore {
-    private DatabaseClient databaseClient;
-    private Admin admin;
+    private DatabaseReadClient databaseClient;
     private ObservableList<Item> items;
     private ObservableList<User> users;
     private User loggedInUser;
-    // todo: change this to read from db
-    private String promoCode;
-    private double discountValue;
+    private Promotion promotion;
     private String currentlySelectedItem;
 
-    public OnlineElectronicsStore(DatabaseClient databaseClient){
+    public OnlineElectronicsStore(DatabaseReadClient databaseClient){
         this.databaseClient = databaseClient;
         this.items = databaseClient.readItemsFromDB();
         this.users = databaseClient.readUsersFromDB();
-        // todo: set the logged in user on login
-        this.loggedInUser = users.get(0); // temporary solution
-        this.promoCode = databaseClient.readPromoCodeFromDB();
-        this.discountValue = databaseClient.readDiscountValueFromDB();
+        this.promotion = databaseClient.readPromotionFromDB();
 
         // todo: revise this hacky code
         // setting shopping cart property manually
@@ -39,8 +30,7 @@ public class OnlineElectronicsStore {
     }
 
     // for unit testing
-    public OnlineElectronicsStore(ObservableList<Item> items){
-        this.items = items;
+    public OnlineElectronicsStore(){
     }
 
     public Item getItemById(String itemId){
@@ -57,6 +47,14 @@ public class OnlineElectronicsStore {
             }
         }
         return null;
+    }
+
+    void setItems(ObservableList<Item> items){
+        this.items = items;
+    }
+
+    void setPromotion(Promotion promotion) {
+        this.promotion = promotion;
     }
 
     public ObservableList<Item> getItems() {
@@ -76,15 +74,15 @@ public class OnlineElectronicsStore {
     }
 
     public String getPromoCode() {
-        return promoCode;
+        return promotion.getPromoCode();
     }
 
     public double getDiscountValue() {
-        return discountValue;
+        return promotion.getDiscountValue();
     }
 
-    void setDiscountValue(double discountValue){
-        this.discountValue = discountValue;
+    public DatabaseReadClient getDatabaseClient() {
+        return databaseClient;
     }
 
     // Get Sorted Items, can sort by name, cost(Price), id(Created time) in ASC or DESC order
@@ -114,8 +112,8 @@ public class OnlineElectronicsStore {
                         return valA.compareTo(valB); // ascending
                     }
                 } else { // default: sort by ID
-                    String valA = itemA.getID();
-                    String valB = itemB.getID();
+                    String valA = itemA.getId();
+                    String valB = itemB.getId();
                     if (order == "DESC"){
                         return -valA.compareTo(valB); // descending
                     } else {

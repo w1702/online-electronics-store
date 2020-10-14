@@ -6,22 +6,44 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewDetailsController">
-   <children>
-      <Pane prefHeight="300.0" prefWidth="200.0">
-         <children>
-            <Label fx:id="name" layoutX="238.0" layoutY="180.0" prefHeight="17.0" prefWidth="124.0" />
-            <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="200.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="ID" layoutX="238.0" layoutY="206.0" prefHeight="17.0" prefWidth="124.0" />
-            <Label fx:id="cost" layoutX="238.0" layoutY="215.0" prefHeight="17.0" prefWidth="124.0" />
-         </children>
-      </Pane>
-      <Pane prefHeight="200.0" prefWidth="200.0">
-         <children>
-            <Button fx:id="AddToCart" layoutX="374.0" layoutY="84.0" mnemonicParsing="false" onAction="#handleAddToCart" text="Add To Cart" />
-            <Label fx:id="description" layoutX="283.0" layoutY="35.0" />
-            <Button fx:id="Return" layoutX="152.0" layoutY="84.0" mnemonicParsing="false" onAction="#handleReturn" text="Back" />
-         </children>
-      </Pane>
-   </children>
+    <children>
+        <HBox>
+            <ImageView fx:id="itemImageView" fitHeight="150.0" fitWidth="200.0" layoutX="200.0" pickOnBounds="true" preserveRatio="true" />
+            <VBox alignment="CENTER_LEFT">
+                <Text fx:id="idText"/>
+                <Text fx:id="nameText"/>
+                <Text fx:id="costText"/>
+                <Text fx:id="descriptionText"/>
+                <Text fx:id="quantityInCartText"/>
+                <Button layoutX="374.0" layoutY="84.0" mnemonicParsing="false" onAction="#handleAddToCart" text="Add To Cart" />
+                <Text fx:id="addToCartStatusText"/>
+            </VBox>
+        </HBox>
+        <VBox alignment="CENTER">
+            <Text text="Reviews"/>
+            <TableView items="${controller.currentItem.reviews}">
+                <placeholder>
+                    <Label text="No results found."/>
+                </placeholder>
+                <columns>
+                    <TableColumn text="UserId">
+                        <cellValueFactory><PropertyValueFactory property="userId"/></cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Comment">
+                        <cellValueFactory><PropertyValueFactory property="comment"/></cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Date">
+                        <cellValueFactory><PropertyValueFactory property="date"/></cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+            <VBox alignment="CENTER">
+                <TextField fx:id="reviewCommentTextField" />
+                <Button layoutX="374.0" layoutY="84.0" mnemonicParsing="false" onAction="#handleAddReview" text="Add Review" />
+                <Text fx:id="addReviewCommentStatusText"/>
+            </VBox>
+        </VBox>
+    </children>
 </VBox>

@@ -140,7 +140,7 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
     }
     
     // Go to view items details page
-    @FXML private void handleViewDetails() throws Exception {
+//    @FXML private void handleViewDetails() throws Exception {
 
    // FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewDetailsController.java"));
   //  Parent root = (Parent)loader.load();
@@ -148,9 +148,9 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
    // controller.initData(hiddenfield.getText());
 
 
-      UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/ViewDetails.fxml", "View Details");
-
-    }
+//      UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/ViewDetails.fxml", "View Details");
+//
+//    }
 
     // public methods for @FXML --------------------------------------------------------------------------------------------------------->
     
@@ -165,7 +165,7 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
         List<Item> items = getItems();
         for( int j = i; j < i + 6; j++) {
             if (j < items.size()){
-                id = items.get(j).getID();
+                id = items.get(j).getId();
                 name = items.get(j).getName();
                 image = items.get(j).getConvertBase64toImage();
                 price = items.get(j).getCost();
@@ -191,7 +191,7 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
         List<Item> items = getSortedItems(sortBy);
         for( int j = i; j < i + 6; j++) {
             if (j < items.size()){
-                id = items.get(j).getID();
+                id = items.get(j).getId();
                 name = items.get(j).getName();
                 image = items.get(j).getConvertBase64toImage();
                 price = items.get(j).getCost();
@@ -356,7 +356,7 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
 
     @FXML
     public void handleCheckout() throws IOException {
-        UILoader.render(new Stage(), getModel(), "/view/Checkout.fxml", "Checkout");
+        UILoader.render(new Stage(), getModel(), "/view/Checkout.fxml", "Shopping Cart");
     }
 
     // Go to view items details page
@@ -389,7 +389,8 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
                 break;
         }
 
-        UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/ViewDetails.fxml", "Title");
+        getModel().setCurrentlySelectedItem(currentlySelectedItem);
+        UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/ViewDetails.fxml", "View Item Details");
     }
 
 }

@@ -9,9 +9,6 @@
       styleClass="root"
       prefWidth="800.0"
 >
-    <HBox>
-        <Label styleClass="h1" text="Checkout"/>
-    </HBox>
     <TableView fx:id="checkoutTableView" items="${controller.shoppingCart.itemsAsList}" prefHeight="200">
         <placeholder>
             <Label text="No results found."/>
@@ -31,6 +28,9 @@
             </TableColumn>
         </columns>
     </TableView>
+    <HBox alignment="center">
+        <Button onAction="#handleRemoveItem" text="Remove item" />
+    </HBox>
     <HBox alignment="center" spacing="10">
         <Text text="Promo code " />
         <TextField fx:id="promoCodeTextField" />
@@ -43,4 +43,7 @@
     <HBox alignment="center">
         <Button onAction="#handleProceedWithCheckout" fx:id="proceedWithCheckoutButton" text="Proceed with checkout" />
     </HBox>
+    <VBox alignment="center">
+        <Text fx:id="checkoutStatusText"/>
+    </VBox>
 </VBox>

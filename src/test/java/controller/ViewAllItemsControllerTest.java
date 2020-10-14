@@ -1,23 +1,16 @@
 package controller;
 
-import db.DatabaseClient;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
+import model.Item;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import model.Item;
-import model.OnlineElectronicsStore;
-import org.junit.jupiter.api.Assertions;
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
 
 public class ViewAllItemsControllerTest {
     
@@ -45,7 +38,7 @@ public class ViewAllItemsControllerTest {
                 items.add(item2);
                 for( int j = i; j < i + 6; j++) {
                     if (j < items.size()){
-                        String actualID = items.get(j).getID();
+                        String actualID = items.get(j).getId();
                         String actualName = items.get(j).getName();
                         String actualImage = items.get(j).getImage();
                         Double actualPrice = items.get(j).getCost();
@@ -53,7 +46,7 @@ public class ViewAllItemsControllerTest {
             // END: Directly copy from getData(int i) function in ViewAllItemsController.java ------------------------------------------------>
 
                         // Assert - check that expected output is equal to actual output
-                        Assertions.assertEquals(expectedOutput.get(j).getID(), actualID);
+                        Assertions.assertEquals(expectedOutput.get(j).getId(), actualID);
                         Assertions.assertEquals(expectedOutput.get(j).getName(), actualName);
                         Assertions.assertEquals(expectedOutput.get(j).getImage(), actualImage);
                         Assertions.assertEquals(expectedOutput.get(j).getCost(), actualPrice);
@@ -139,8 +132,8 @@ public class ViewAllItemsControllerTest {
                              return valA.compareTo(valB); // ascending
                             }
                         } else { // default: sort by ID
-                            String valA = itemA.getID();
-                            String valB = itemB.getID();
+                            String valA = itemA.getId();
+                            String valB = itemB.getId();
                             if (order == "DESC"){
                                 return -valA.compareTo(valB); // descending
                             } else {
