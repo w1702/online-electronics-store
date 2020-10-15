@@ -3,6 +3,7 @@ package model;
 import db.DatabaseWriteClient;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
+import org.bson.types.ObjectId;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -28,9 +29,11 @@ public class Item {
     }
 
     public void addReview(String userId, String comment){
-        Review review = new Review(new UUID(8L, 8L).toString(), new Date().toString(), comment, userId);
+        Review review = new Review(new ObjectId().toString(), new Date().toString(), comment, userId);
+        // write to database before app data to avoid index out of bounds exceptions
+        DatabaseWriteClient.writeItemReviewToDB(this, review);
         reviews.add(review);
-//        DatabaseWriteClient.writeItemReviewToDB(this.name, review);
+
     }
 
     public String getId() {
