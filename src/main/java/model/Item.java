@@ -1,5 +1,6 @@
 package model;
 
+import db.DatabaseWriteClient;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 
@@ -27,7 +28,9 @@ public class Item {
     }
 
     public void addReview(String userId, String comment){
-        reviews.add(new Review(new UUID(8L, 8L).toString(), new Date().toString(), comment, userId));
+        Review review = new Review(new UUID(8L, 8L).toString(), new Date().toString(), comment, userId);
+        reviews.add(review);
+//        DatabaseWriteClient.writeItemReviewToDB(this.name, review);
     }
 
     public String getId() {
