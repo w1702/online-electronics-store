@@ -26,19 +26,29 @@ import static db.DatabaseCredentials.*;
 public class DatabaseWriteClient {
     public static UpdateResult writeItemReviewToDB(Item item, Review review){
         Bson bsonFilter = eq("items.id", new ObjectId(item.getId()));
+        BasicDBList reviews = new BasicDBList();
 
-        Bson reviewDBObject = and(
-                new BasicDBObject("id", new ObjectId(review.getId())),
-                new BasicDBObject("date", review.getDate()),
-                new BasicDBObject("comment", review.getComment()),
-                new BasicDBObject("userId", new ObjectId(review.getUserId()))
+        for (Review existingReview : item.getReviews()) {
+            reviews.add(
+                    and(
+                        new BasicDBObject("id", new ObjectId(existingReview.getId())),
+                        new BasicDBObject("date", existingReview.getDate()),
+                        new BasicDBObject("comment", existingReview.getComment()),
+                        new BasicDBObject("userId", new ObjectId(existingReview.getUserId()))
+                    )
+            );
+        }
+        
+        reviews.add(
+                and(
+                    new BasicDBObject("id", new ObjectId(review.getId())),
+                    new BasicDBObject("date", review.getDate()),
+                    new BasicDBObject("comment", review.getComment()),
+                    new BasicDBObject("userId", new ObjectId(review.getUserId()))
+                )
         );
 
-        // todo: this is overwriting the reviews instead of appending
-        BasicDBList reviews = new BasicDBList();
-        reviews.add(reviewDBObject);
         Bson reviewComment = set("items.$.reviews", reviews);
-
         UpdateResult updateResult = writeToDatabase(bsonFilter, reviewComment);
         System.out.println(updateResult);
         return updateResult;
@@ -52,7 +62,6 @@ public class DatabaseWriteClient {
         try(MongoClient mongoClient = new MongoClient(new MongoClientURI(URI))){
             MongoDatabase database = mongoClient.getDatabase(DATABASE_NAME);
             MongoCollection<Document> collection = database.getCollection(COLLECTION_NAME_ONLINE_ELECTRONICS_STORE);
-            Bson combinedFilter = and(eq("_id", new ObjectId("5f34fefcb1fc6f6ab7b57870")), bsonFilter);
             return collection.updateOne(bsonFilter, bsonWriteOperation);
         }
     }

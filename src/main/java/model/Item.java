@@ -9,7 +9,6 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Base64;
 import java.util.Date;
-import java.util.UUID;
 
 public class Item {
     private ObservableList<Review> reviews;
