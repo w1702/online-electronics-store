@@ -10,10 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 <VBox alignment="center" prefHeight="200.0" prefWidth="400.0" spacing="10" styleClass="root" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
-    <!--to view login page change UILoader.render in (OnlineElectronicsStoreApplication.java) to Login.fxml
-     the mongo db has stored a email , password stored to check if the logic works
-     emial: johnnydepp@gmai.com  password: johnnydepp (both id, password are case sensitive)
-     the login page is connected to SingUP page which is a feature to be done in Release 2-->
+    <!-- do your UI here -->
 
     <Label styleClass="h1" text="Online Electronic Store ">
         <font>
