@@ -45,8 +45,8 @@ public class LoginController extends MVCController<OnlineElectronicsStore> {
         }
     }
 
-    public void handleSignup(){
-        // todo: Balraj's part
+    public void handleSignup() throws IOException {
+        UILoader.render(new Stage(), getModel(), "/view/SignUp.fxml", "Sign Up");
     }
 
     public void handleReset(){
