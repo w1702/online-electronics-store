@@ -1,13 +1,14 @@
 package model;
 
+import db.DatabaseWriteClient;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
+import org.bson.types.ObjectId;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Base64;
 import java.util.Date;
-import java.util.UUID;
 
 public class Item {
     private ObservableList<Review> reviews;
@@ -27,7 +28,11 @@ public class Item {
     }
 
     public void addReview(String userId, String comment){
-        reviews.add(new Review(new UUID(8L, 8L).toString(), new Date().toString(), comment, userId));
+        Review review = new Review(new ObjectId().toString(), new Date().toString(), comment, userId);
+        // write to database before app data to avoid index out of bounds exceptions
+        DatabaseWriteClient.writeItemReviewToDB(this, review);
+        reviews.add(review);
+
     }
 
     public String getId() {

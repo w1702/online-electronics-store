@@ -70,7 +70,6 @@ public class ViewDetailsController extends MVCController<OnlineElectronicsStore>
             getModel()
                     .getItemById(getModel().getCurrentlySelectedItem())
                     .addReview(getModel().getLoggedInUser().getId(), reviewCommentTextField.getText());
-            DatabaseWriteClient.writeReviewsToDB();
         }
     }
 
