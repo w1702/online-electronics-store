@@ -1,48 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewDetailsController">
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewDetailsController">
     <children>
         <HBox>
             <ImageView fx:id="itemImageView" fitHeight="150.0" fitWidth="200.0" layoutX="200.0" pickOnBounds="true" preserveRatio="true" />
             <VBox alignment="CENTER_LEFT">
-                <Text fx:id="idText"/>
-                <Text fx:id="nameText"/>
-                <Text fx:id="costText"/>
-                <Text fx:id="descriptionText"/>
-                <Text fx:id="quantityInCartText"/>
+                <Text fx:id="idText" />
+                <Text fx:id="nameText" />
+                <Text fx:id="costText" />
+                <Text fx:id="descriptionText" />
+                <Text fx:id="quantityInCartText" />
                 <Button layoutX="374.0" layoutY="84.0" mnemonicParsing="false" onAction="#handleAddToCart" text="Add To Cart" />
-                <Text fx:id="addToCartStatusText"/>
+                <Text fx:id="addToCartStatusText" />
             </VBox>
         </HBox>
         <VBox alignment="CENTER">
-            <Text text="Reviews"/>
+            <Text text="Reviews" />
             <TableView items="${controller.currentItem.reviews}">
                 <placeholder>
-                    <Label text="No results found."/>
+                    <Label text="No results found." />
                 </placeholder>
                 <columns>
                     <TableColumn text="UserId">
-                        <cellValueFactory><PropertyValueFactory property="userId"/></cellValueFactory>
+                        <cellValueFactory><PropertyValueFactory property="userId" /></cellValueFactory>
                     </TableColumn>
                     <TableColumn text="Comment">
-                        <cellValueFactory><PropertyValueFactory property="comment"/></cellValueFactory>
+                        <cellValueFactory><PropertyValueFactory property="comment" /></cellValueFactory>
                     </TableColumn>
                     <TableColumn text="Date">
-                        <cellValueFactory><PropertyValueFactory property="date"/></cellValueFactory>
+                        <cellValueFactory><PropertyValueFactory property="date" /></cellValueFactory>
                     </TableColumn>
                 </columns>
             </TableView>
             <VBox alignment="CENTER">
-                <TextField fx:id="reviewCommentTextField" />
+                <TextField fx:id="reviewCommentTextField" prefHeight="33.0" prefWidth="600.0" />
                 <Button layoutX="374.0" layoutY="84.0" mnemonicParsing="false" onAction="#handleAddReview" text="Add Review" />
-                <Text fx:id="addReviewCommentStatusText"/>
+                <Text fx:id="addReviewCommentStatusText" />
             </VBox>
         </VBox>
     </children>
