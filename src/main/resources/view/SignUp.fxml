@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="center" prefHeight="200.0" prefWidth="400.0" spacing="10" styleClass="root" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" >
+<VBox alignment="center" prefHeight="200.0" prefWidth="400.0" spacing="10" styleClass="root" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SignupController">
     <Label styleClass="h1" text="Online Electronic Store ">
         <font>
             <Font name="Garamond Bold" size="16.0" />
@@ -25,7 +25,7 @@
             <font>
                 <Font name="Gill Sans MT" size="14.0" />
             </font></Label>
-        <TextField  promptText="FirstName" />
+        <TextField fx:id="firstNameTextField" promptText="FirstName" />
     </HBox>
     <HBox alignment="CENTER">
         <Label text="Last Name">
@@ -35,7 +35,7 @@
             <font>
                 <Font name="Gill Sans MT" size="14.0" />
             </font></Label>
-        <TextField promptText="LastName" />
+        <TextField fx:id="lastNameTextField" promptText="LastName" />
     </HBox>
     <HBox alignment="CENTER">
         <Label text="Login ID">
@@ -57,7 +57,7 @@
             </font></Label>
         <PasswordField fx:id="passwordField" promptText="Password" />
     </HBox>
-    <Button  text="Sign-up">
+    <Button onAction="#handleSignup" text="Sign-up">
         <HBox.margin>
             <Insets left="10.0" />
         </HBox.margin></Button>

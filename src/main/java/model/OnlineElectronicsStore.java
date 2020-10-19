@@ -2,6 +2,7 @@ package model;
 
 import db.DatabaseReadClient;
 import javafx.collections.ObservableList;
+import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -135,5 +136,11 @@ public class OnlineElectronicsStore {
     
     public String getCurrentlySelectedItem(){
         return currentlySelectedItem;
+    }
+
+    public void addUser(String firstName, String lastName, String email, String password){
+        String id=new ObjectId().toString();
+        users.add(new User(id,firstName,lastName,email,password));
+
     }
 }

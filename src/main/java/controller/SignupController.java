@@ -13,7 +13,13 @@ import utils.UILoader;
 import java.io.IOException;
 import java.util.List;
 
-public class SigninController extends MVCController<OnlineElectronicsStore> {
+public class SignupController extends MVCController<OnlineElectronicsStore> {
+
+    @FXML
+    private TextField firstNameTextField;
+
+    @FXML
+    private TextField lastNameTextField;
 
     @FXML
     private TextField emailTextField;
@@ -21,6 +27,10 @@ public class SigninController extends MVCController<OnlineElectronicsStore> {
     @FXML
     private PasswordField passwordField;
 
+    public void handleSignup(){
+        getModel().addUser(firstNameTextField.getText(), lastNameTextField.getText(), emailTextField.getText(), passwordField.getText());
+
+    }
 
 
 }
