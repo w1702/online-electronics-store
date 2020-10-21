@@ -294,6 +294,15 @@ public class SearchItemsController extends MVCController<OnlineElectronicsStore>
         return str.matches("-?\\d+(\\.\\d+)?") || str.isEmpty();  //match a number with optional '-' and decimal and null
     }
     
+    public void setToolTip(){
+        // Set tooltip
+        Tooltip.install(btnNext, new Tooltip("Next"));
+        Tooltip.install(btnPrevious, new Tooltip("Previous"));
+        Tooltip.install(btnLast, new Tooltip("Last"));
+        Tooltip.install(btnFirst, new Tooltip("First"));
+        Tooltip.install(txtPriceMin, new Tooltip("Minimum Price"));
+        Tooltip.install(txtPriceMax, new Tooltip("Maximum Price"));
+    }
     
     // @FXML methods --------------------------------------------------------------------------------------------------------------------->
     
@@ -305,7 +314,7 @@ public class SearchItemsController extends MVCController<OnlineElectronicsStore>
         btnPrevious.setDisable(true);
         btnFirst.setDisable(true);
         cbSortBy.getItems().addAll("Sort By", "Name: A to Z", "Name: Z to A", "Price: Lowest", "Price: Highest", "Time: Newest", "Time: Oldest"); // bind combobox
-        
+        setToolTip();
     }
     
     // Go to search page
