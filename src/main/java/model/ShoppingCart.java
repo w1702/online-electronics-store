@@ -25,7 +25,9 @@ public class ShoppingCart {
             Integer quantity = itemQuantity.get(itemId);
             for(int i = 0; i < quantity; i++ ){
                 Item item = onlineElectronicsStore.getItemById(itemId);
-                checkoutItems.add(item);
+                if(item != null){
+                    checkoutItems.add(item);
+                }
             }
         }
         return checkoutItems;
