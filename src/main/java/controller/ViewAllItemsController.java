@@ -116,8 +116,10 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
         } else {
             order = "DESC";
         }
-        return getModel().getSortedItems(sortBy, order);
+        return getModel().getSortedItems(sortBy, order, "", 0, 999999999);
     }
+    
+    
     
     
     // @FXML methods --------------------------------------------------------------------------------------------------------------------->
@@ -137,21 +139,9 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
         } else {
             getData(0); // get original order
         }
+        btnPrevious.setDisable(true);
     }
     
-    // Go to view items details page
-//    @FXML private void handleViewDetails() throws Exception {
-
-   // FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewDetailsController.java"));
-  //  Parent root = (Parent)loader.load();
-  //  ViewDetailsController controller = loader.getController();
-   // controller.initData(hiddenfield.getText());
-
-
-//      UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/ViewDetails.fxml", "View Details");
-//
-//    }
-
     // public methods for @FXML --------------------------------------------------------------------------------------------------------->
     
     public void getData(int i){
@@ -350,8 +340,9 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
     }
 
     // Go to search page
-    @FXML private void handleSearchItems(ActionEvent event) throws Exception {
-        UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/SearchItems.fxml", "Search Items");
+    @FXML private void handleSearchItems(Event event) throws Exception {
+        getModel().setCurrentlySelectedItem(txtsearchKeyword.getText());
+        UILoader.render(new Stage(), getModel(), "/view/SearchItems.fxml", "Search Items");
     }
 
     @FXML
@@ -388,7 +379,6 @@ public class ViewAllItemsController extends MVCController<OnlineElectronicsStore
             default:
                 break;
         }
-
         getModel().setCurrentlySelectedItem(currentlySelectedItem);
         UILoader.render(new Stage(), getOnlineElectronicsStore(), "/view/ViewDetails.fxml", "View Item Details");
     }

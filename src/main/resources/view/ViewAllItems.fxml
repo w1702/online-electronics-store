@@ -21,7 +21,7 @@
             </font>
          </Label>
            <Button fx:id="searchBtn" layoutX="555.0" layoutY="34.0" onAction="#handleSearchItems" text="Search" />
-         <TextField layoutX="231.0" layoutY="34.0" prefHeight="25.0" prefWidth="308.0" promptText="Type to search for an item...">
+         <TextField fx:id="txtsearchKeyword" layoutX="231.0" layoutY="34.0" prefHeight="25.0" prefWidth="308.0" promptText="Type to search for an item...">
          </TextField>
          <AnchorPane layoutX="29.0" layoutY="78.0" prefHeight="460.0" prefWidth="578.0" style="-fx-background-color: white;">
             <children>

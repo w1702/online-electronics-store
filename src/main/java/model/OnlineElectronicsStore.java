@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import javafx.collections.FXCollections;
 
 public class OnlineElectronicsStore {
     private DatabaseReadClient databaseClient;
@@ -49,7 +50,7 @@ public class OnlineElectronicsStore {
         }
         return null;
     }
-
+    
     void setItems(ObservableList<Item> items){
         this.items = items;
     }
@@ -87,8 +88,17 @@ public class OnlineElectronicsStore {
     }
 
     // Get Sorted Items, can sort by name, cost(Price), id(Created time) in ASC or DESC order
-    public List<Item> getSortedItems(String sortBy, String order) {
-        List<Item> itemsList = getItems();
+    public List<Item> getSortedItems(String sortBy, String order, String keyword, double min, double max) {
+        List<Item> itemsList = new ArrayList<>();
+        if (keyword.isEmpty() && min == 0 && max == 999999999){ // check is search list or homepage list
+            itemsList = getItems();
+        }else {
+            itemsList = getItemByKeywords(keyword, min, max);
+        }
+        return sort(itemsList, sortBy, order); // return sortedItem list
+    }
+    
+    public List<Item> sort(List<Item> itemsList, String sortBy, String order){
         List<Item> compareList = new ArrayList<>();
         for (Item item : itemsList){
             compareList.add(item);
@@ -128,6 +138,21 @@ public class OnlineElectronicsStore {
             sortedItems.add(item);
         }
         return sortedItems; // return sortedItem list
+    }
+    
+    public List<Item> getItemByKeywords(String keywords, double min, double max){
+        ObservableList<Item> searchList = FXCollections.observableArrayList();
+        for (Item item : items) {
+            if(min <= item.getCost() && item.getCost() <= max){
+                if(item.getName().toLowerCase().contains(keywords.toLowerCase())){
+                    searchList.add(item);
+                }
+                else if (item.getDescription().toLowerCase().contains(keywords.toLowerCase())){
+                    searchList.add(item);
+                }
+            }
+        }
+        return sort(searchList, "name", "ASC");
     }
     
     public void setCurrentlySelectedItem(String currentlySelectedItem){
