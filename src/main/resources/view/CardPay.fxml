@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CardPayController">
+   <children>
+      <MenuBar layoutY="-2.0" prefWidth="600.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Separator layoutY="78.0" prefWidth="600.0" />
+      <Label layoutX="156.0" layoutY="36.0" text="Thanks For Your Payment" textAlignment="CENTER">
+         <font>
+            <Font name="Apple SD Gothic Neo Bold" size="25.0" />
+         </font>
+      </Label>
+      <Button fx:id="view" layoutX="42.0" layoutY="344.0" mnemonicParsing="false" text="View Your Order" />
+      <Button fx:id="back" layoutX="241.0" layoutY="344.0" mnemonicParsing="false" text="Back To Main Page" />
+      <Button fx:id="QA" layoutX="461.0" layoutY="344.0" onAction="#handleQuestions" text="Q &amp; A" />
+
+      <Label layoutX="66.0" layoutY="122.0" text="card name:"></Label>
+      <Text fx:id="cardNumber" layoutX="195.0" layoutY="137.0" text="${controller.payment.cardNumber}" wrappingWidth="135.076171875" />
+      <Label layoutX="66.0" layoutY="164.0" text="card number:"></Label>
+      <Text fx:id="cardName" layoutX="195.0" layoutY="179.0" text="${controller.payment.cardName}" wrappingWidth="61.0" />
+<!--      <Label layoutX="66.0" layoutY="206.0" text="exp:"></Label>-->
+<!--      <Text fx:id="exp" layoutX="195.0" layoutY="221.0" text="${controller.payment.exp}" wrappingWidth="135.076171875" />-->
+<!--      <Label layoutX="66.0" layoutY="248.0" text="cvv:"></Label>-->
+<!--      <Text fx:id="cvv" layoutX="195.0" layoutY="263.0" text="${controller.payment.cvv}" wrappingWidth="61.0" />-->
+       <TableView layoutX="340.0" layoutY="120" fx:id="items" items="${controller.lastOrder.items}"
+                  prefWidth="400" prefHeight="200">
+           <placeholder>
+               <Label text="No results found." />
+           </placeholder>
+           <columns>
+               <TableColumn fx:id="idClm" text="ID">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="id" />
+                   </cellValueFactory>
+               </TableColumn>
+               <TableColumn fx:id="nameClm" text="Name">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="name" />
+                   </cellValueFactory>
+               </TableColumn>
+               <TableColumn fx:id="costClm" text="Cost">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="cost" />
+                   </cellValueFactory>
+               </TableColumn>
+               <TableColumn fx:id="desClm" text="Description">
+                   <cellValueFactory>
+                       <PropertyValueFactory property="description" />
+                   </cellValueFactory>
+               </TableColumn>
+           </columns>
+       </TableView>
+     
+   </children>
+</Pane>

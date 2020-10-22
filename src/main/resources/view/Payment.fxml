@@ -57,7 +57,7 @@
                      <Image url="@../pic/card.png" />
                   </image>
                </ImageView>
-            <RadioButton layoutX="171.0" layoutY="3.0" mnemonicParsing="false" text="Debit/Credit Card">
+            <RadioButton fx:id="radioButtonCard" layoutX="171.0" layoutY="3.0" mnemonicParsing="false" text="Debit/Credit Card">
                <font>
                   <Font name="Al Bayan Bold" size="18.0" />
                </font>
@@ -69,8 +69,8 @@
          <TextField fx:id="cardName" prefHeight="40" prefWidth="160" promptText="Name On Card" />
          <TextField fx:id="cardNumber" prefHeight="40" prefWidth="160" promptText="XXXX-XXXX-XXXX-XXXX" />
          <TextField fx:id="exp" prefHeight="40" prefWidth="160" promptText="MM/YY" />
-         <TextField fx:id="cvc" prefHeight="40" prefWidth="160" promptText="CVC" />
-         <Button fx:id="Pay" alignment="CENTER" contentDisplay="CENTER" onAction="#handleButtonEvent" opacity="0.65" prefHeight="54.0" prefWidth="118.0" text="PAY">
+         <TextField fx:id="cvv" prefHeight="40" prefWidth="160" promptText="CVC" />
+         <Button fx:id="CardPay" alignment="CENTER" contentDisplay="CENTER" onAction="#handleCardPay" opacity="0.65" prefHeight="54.0" prefWidth="118.0" text="PAY">
          <font>
             <Font name="Apple SD GothicNeo ExtraBold" size="16.0" />
          </font>
@@ -83,15 +83,15 @@
                   </image>
                </ImageView>
             <Separator layoutY="8.0" prefHeight="10.0" prefWidth="802.0" />
-            <RadioButton layoutX="187.0" layoutY="40.0" mnemonicParsing="false" text="Apple Pay">
+            <RadioButton fx:id="radioButtonApple" layoutX="187.0" layoutY="40.0" mnemonicParsing="false" text="Apple Pay">
                <font>
                   <Font name="Al Bayan Bold" size="18.0" />
                </font>
             </RadioButton>
             <Pane layoutX="10.0" layoutY="91.0" prefHeight="17.0" prefWidth="807.0" />
-            <TextField fx:id="cardName1" layoutX="23.0" layoutY="113.0" prefHeight="33.0" prefWidth="300.0" promptText="Apple ID" />
-            <TextField fx:id="cardName2" layoutX="23.0" layoutY="157.0" prefHeight="33.0" prefWidth="300.0" promptText="Password" />
-            <Button fx:id="ApplePay" alignment="CENTER" layoutX="426.0" layoutY="116.0" mnemonicParsing="false" opacity="0.66" prefHeight="54.0" prefWidth="256.0" text="SIGN IN WITH YOUR APPLE ID">
+            <TextField fx:id="appleID" layoutX="23.0" layoutY="113.0" prefHeight="33.0" prefWidth="300.0" promptText="Apple ID" />
+            <TextField fx:id="applePassword" layoutX="23.0" layoutY="157.0" prefHeight="33.0" prefWidth="300.0" promptText="Password" />
+            <Button fx:id="ApplePay" alignment="CENTER" layoutX="426.0" layoutY="116.0" mnemonicParsing="false" onAction="#handleApplePay" opacity="0.66" prefHeight="54.0" prefWidth="256.0" text="Pay with AppleID">
                <font>
                   <Font name="Apple SD GothicNeo ExtraBold" size="16.0" />
                </font>

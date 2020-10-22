@@ -5,8 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FAQController">
    <children>
       <MenuBar layoutX="1.0" layoutY="-1.0" prefHeight="29.0" prefWidth="800.0">
         <menus>
@@ -33,5 +32,6 @@
             <Font name="Al Bayan Bold" size="16.0" />
          </font>
       </Button>
+      <TreeView fx:id="faq" layoutX="36.0" layoutY="103.0" prefHeight="282.0" prefWidth="733.0" />
    </children>
 </AnchorPane>
