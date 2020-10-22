@@ -1,49 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-<VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="controller.CheckoutController"
-      alignment="center" spacing="10"
-      styleClass="root"
-      prefWidth="800.0"
->
-    <TableView fx:id="checkoutTableView" items="${controller.shoppingCart.itemsAsList}" prefHeight="200">
-        <placeholder>
-            <Label text="No results found."/>
-        </placeholder>
-        <columns>
-            <TableColumn text="ID">
-                <cellValueFactory><PropertyValueFactory property="id"/></cellValueFactory>
-            </TableColumn>
-            <TableColumn text="Name">
-                <cellValueFactory><PropertyValueFactory property="name"/></cellValueFactory>
-            </TableColumn>
-            <TableColumn text="Cost">
-                <cellValueFactory><PropertyValueFactory property="cost"/></cellValueFactory>
-            </TableColumn>
-            <TableColumn text="Description">
-                <cellValueFactory><PropertyValueFactory property="description"/></cellValueFactory>
-            </TableColumn>
-        </columns>
-    </TableView>
-    <HBox alignment="center">
-        <Button onAction="#handleRemoveItem" text="Remove item" />
-    </HBox>
-    <HBox alignment="center" spacing="10">
-        <Text text="Promo code " />
-        <TextField fx:id="promoCodeTextField" />
-        <Button onAction="#handleUsePromoCode" fx:id="usePromoCodeButton" text="Use Promo Code" />
-    </HBox>
-    <VBox alignment="center">
-        <Text fx:id="discountValueText"/>
-        <Text fx:id="totalCostText"/>
-    </VBox>
-    <HBox alignment="center">
-        <Button onAction="#handleProceedWithCheckout" fx:id="proceedWithCheckoutButton" text="Proceed with checkout" />
-    </HBox>
-    <VBox alignment="center">
-        <Text fx:id="checkoutStatusText"/>
-    </VBox>
+
+<VBox alignment="center" prefWidth="800.0" spacing="10" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CheckoutController">
+   <children>
+       <TableView fx:id="items" items="${controller.shoppingCart.itemsAsList}" prefHeight="200">
+           <placeholder>
+               <Label text="No results found." />
+           </placeholder>
+           <columns>
+               <TableColumn fx:id="idClm" text="ID">
+                   <cellValueFactory>
+                  <PropertyValueFactory property="id" />
+               </cellValueFactory>
+               </TableColumn>
+               <TableColumn fx:id="nameClm" text="Name">
+                   <cellValueFactory>
+                  <PropertyValueFactory property="name" />
+               </cellValueFactory>
+               </TableColumn>
+               <TableColumn fx:id="costClm" text="Cost">
+                   <cellValueFactory>
+                  <PropertyValueFactory property="cost" />
+               </cellValueFactory>
+               </TableColumn>
+               <TableColumn fx:id="desClm" text="Description">
+                   <cellValueFactory>
+                  <PropertyValueFactory property="description" />
+               </cellValueFactory>
+               </TableColumn>
+           </columns>
+       </TableView>
+       <HBox alignment="center">
+          <children>
+              <Button alignment="TOP_LEFT" layoutX="20.0" onAction="#handleRemoveItem" text="Remove item">
+            
+            </Button>
+            <Button alignment="TOP_LEFT" onAction="#handleClear" text="Clear" />
+           
+           
+          </children>
+       </HBox>
+       <HBox alignment="center" spacing="10">
+          <children>
+              <Text text="Promo code " />
+              <TextField fx:id="promoCodeTextField" />
+              <Button fx:id="usePromoCodeButton" onAction="#handleUsePromoCode" text="Use Promo Code" />
+          </children>
+       </HBox>
+       <VBox alignment="center">
+          <children>
+              <Text fx:id="discountValueText" />
+              <Text fx:id="totalCostText" />
+          </children>
+       </VBox>
+       <HBox alignment="center">
+          <children>
+              <Button fx:id="proceedWithCheckoutButton" onAction="#handleProceedWithCheckout" text="Proceed with checkout" />
+          </children>
+       </HBox>
+       <VBox alignment="center">
+          <children>
+              <Text fx:id="checkoutStatusText" />
+          </children>
+       </VBox>
+   </children>
 </VBox>
