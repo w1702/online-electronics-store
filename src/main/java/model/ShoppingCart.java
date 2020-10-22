@@ -4,6 +4,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class ShoppingCart {
     private OnlineElectronicsStore onlineElectronicsStore;
     private ObservableMap<String, Integer> itemQuantity;
@@ -34,6 +39,16 @@ public class ShoppingCart {
         }
         else{
             itemQuantity.put(itemId, quantity);
+        }
+    }
+
+    public void removeItem(String itemId){
+        if(itemQuantity.size() > 0){
+            for (String id : itemQuantity.keySet()) {
+                if(id.equals(itemId) && itemQuantity.get(id) > 0){
+                    itemQuantity.put(itemId, itemQuantity.get(id) - 1);
+                }
+            }
         }
     }
 
